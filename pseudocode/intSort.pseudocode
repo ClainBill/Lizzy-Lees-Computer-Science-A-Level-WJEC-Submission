@@ -1,0 +1,47 @@
+FUNCTION mergeSortInt(integers):
+
+    # Exit condition
+    IF length of integers is equal to 1 THEN
+        RETURN integers
+    END IF
+
+    # Divide list into two halves
+    mid = floor(length of integers / 2)
+    left_integers = sublist of integers from 0 to mid-1
+    right_integers = sublist of integers from mid to end
+
+    # Recursively sort each half
+    left_integers = CALL mergeSortInt(left_integers)
+    right_integers = CALL mergeSortInt(right_integers)
+
+    # Merge the two halves together
+    sorted_integers = empty list
+    i = j = 0
+    WHILE i is less than length of left_integers AND j is less than length of right_integers DO
+        left_integer = left_integers[i]
+        right_integer = right_integers[j]
+        IF (int(left_integer[0]) < int(right_integer[0])) THEN 
+            append left_integer to sorted_integers
+            i += 1
+        ELSE
+            append right_integer to sorted_integers
+            j += 1
+        END IF
+    END WHILE
+
+    # Add any remaining elements in the left list
+    WHILE i is less than length of left_integers DO
+        append left_integers[i] to sorted_integers
+        i += 1
+    END WHILE
+
+    # Add any remaining elements in the right list
+    WHILE j is less than length of right_integers DO
+        append right_integers[j] to sorted_integers
+        j += 1
+    END WHILE
+
+    # Return the sorted list
+    RETURN sorted_integers
+
+END FUNCTION

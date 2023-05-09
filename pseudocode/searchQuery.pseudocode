@@ -1,0 +1,28 @@
+FUNCTION searchQuery():
+    query = "SELECT * FROM " + table.table + " WHERE "
+    numberOfEntries = len(entryVars)
+    emptyVars = 0
+
+    FOR x IN range(length of entryVars):
+        key = list(entryVars)[x]
+        value = entries[x].get()
+        
+        IF value == "" OR value == "None" THEN
+            emptyVars += 1
+        ELSE:
+            query += key + " = \"" + value + "\" AND "
+
+    # If there were no values entered
+    IF emptyVars == numberOfEntries THEN
+        OUTPUT "No values entered, displaying whole table"
+        table.fillTable()
+        RETURN
+    # If there was a value entered
+    ELSE:    
+        query = query[:-5]
+        OUTPUT query
+        table.fillTable(query)
+        RETURN
+    END IF
+
+END FUNCTION

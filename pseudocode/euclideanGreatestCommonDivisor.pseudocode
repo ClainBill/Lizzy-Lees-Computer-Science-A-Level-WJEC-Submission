@@ -1,0 +1,12 @@
+FUNCTION euclideanGreatestCommmonDivisor(a, b):
+
+    # Check if the first integer is 0
+    IF a == 0 THEN
+        RETURN (b, 0, 1)
+    ELSE
+        # Recursively calculate the greatest common divisor
+        commonDivisor, y, x = euclideanGreatestCommmonDivisor(b % a, a)
+        RETURN (commonDivisor, x - (b // a) * y, y)
+    END IF
+
+END FUNCTION

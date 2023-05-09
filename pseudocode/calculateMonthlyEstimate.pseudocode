@@ -1,0 +1,32 @@
+FUNCTION calculateCost():
+    #Get selected rows
+    curItems[] is array of treeview.selection()
+
+    #If selection is not empty        
+    IF curItems not EMPTY THEN
+            
+        #define cost estimate text and monthly cost variables
+        calculationEstimate = EMPTY STRING
+        monthlyRevenue = 0
+
+        #Clear the Text widget
+        revenueFrame.text['state'] = "normal"
+        revenueFrame.text.delete(1.0, END)
+            
+        #Loop through each selected row
+        FOR item in curItems DO
+            selectedItem = table.tree.item(item)['values']
+        
+            #Calculate the monthly cost and the calculation estimate text
+            monthlyCost = float(selectedItem[4]) * float(selectedItem[8])
+            calculationEstimate += "User ID '" + str(selectedItem[0]) + "' has " + str(selectedItem[4]) + " monthly lessons, each costing £" + str(selectedItem[8]) + " resulting in a monthly revenue of: £" + str(monthlyCost) + "\n"
+            monthlyRevenue += monthlyCost
+            
+        #Add the total monthly revenue to the text
+        calculationEstimate += "\nTotal Monthly Estimate for Selected Lessons: £" + str(monthlyRevenue)
+            
+        #Set the Text() widget to display the information
+        revenueFrame.text.insert(END, calculationEstimate)
+        revenueFrame.text['state'] = "disabled"
+    ELSE
+        print("Please Select a row")

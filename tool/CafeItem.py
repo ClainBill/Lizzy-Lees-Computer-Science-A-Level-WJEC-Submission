@@ -1,0 +1,43 @@
+import csv
+import random
+
+"""A script that generates a CSV file containing dummy data for the CafeItem table.
+It will generate a type, and then choose from a type of item within that item type. e.g. Coffee -> Black Coffee, Latte, Cappuccino, etc. or Tea -> Black Tea, Green Tea, etc."""
+
+# list of types of item sold
+types = ['Coffee', 'Tea', 'Hot Drink', 'Soda', 'Sandwich', 'Salad', 'Soup', 'Cake', 'Cookie', 'Pastry']
+
+# list of guitar models
+sub_types = {'Coffee':['Black Coffee', 'Latte', 'Cappuccino', 'Americano', 'Espresso', 'Mocha', 'Flat White', 'Macchiato', 'Cortado', 'Affogato', 'Irish Coffee', 'Turkish Coffee', 'Viennese Coffee', 'Cafe Cubano', 'Cafe Bombon', 'Cafe Au Lait', 'Cafe Breva', 'Cafe Con Leche', 'Cafe Con Miel', 'Cafe Con Mocha', 'Cafe Con Panna', 'Cafe De Olla', 'Cafe Del Tiempo', 'Cafe Freddo', 'Cafe Latte', 'Cafe Macchiato', 'Cafe Melange', 'Cafe Miel', 'Cafe Mocha', 'Cafe Noisette', 'Cafe Touba', 'Cafe Zorro', 'Caffe Americano', 'Caffe Breve', 'Caffe Corretto', 'Caffe Latte', 'Caffe Macchiato', 'Caffe Mocha', 'Caffe Ristretto', 'Caffe Shakerato', 'Caffe Tobio', 'Caffe Zorro', 'Cafe Au Lait', 'Cafe Bonbon', 'Cafe Con Hielo', 'Cafe Con Leche', 'Cafe Con Miel', 'Cafe Con Mocha', 'Cafe Con Panna', 'Cafe De Olla', 'Cafe Del Tiempo', 'Cafe Freddo', 'Cafe Latte', 'Cafe Macchiato', 'Cafe Melange', 'Cafe Miel', 'Cafe Mocha', 'Cafe Noisette', 'Cafe Touba', 'Cafe Zorro', 'Caffe Americano', 'Caffe Breve', 'Caffe Corretto', 'Caffe Latte', 'Caffe Macchiato', 'Caffe Mocha', 'Caffe Ristretto', 'Caffe Shakerato', 'Caffe Tobio', 'Caffe Zorro'],
+             'Tea':['Black Tea', 'Green Tea', 'White Tea', 'Oolong Tea', 'Pu-erh Tea', 'Yellow Tea', 'Herbal Tea', 'Fruit Tea', 'Rooibos Tea', 'Honeybush Tea', 'Yerba Mate', 'Matcha', 'Chai Tea', 'Bubble Tea', 'Iced Tea', 'Sweet Tea', 'Thai Tea', 'Masala Chai', 'Hong Kong Milk Tea', 'Teh Tarik', 'Teh Botol', 'Teh C Peng', 'Teh O', 'Teh C', 'Teh Halia', 'Teh Susu', 'Teh Sereh', 'Teh Manis', 'Teh Sosro', 'Teh Kotak', 'Teh Poci', 'Teh Pucuk', 'Teh Celup', 'Teh Hijau', 'Teh Hitam', 'Teh Putih', 'Teh Oolong', 'Teh Pu-erh', 'Teh Kuning', 'Teh Herbal', 'Teh Buah', 'Teh Rooibos', 'Teh Honeybush', 'Teh Yerba Mate', 'Teh Matcha', 'Teh Chai', 'Teh Buih', 'Teh Ais', 'Teh Manis', 'Teh Thailand', 'Teh Masala', 'Teh Susu', 'Teh Hong Kong', 'Teh Tarik', 'Teh Botol', 'Teh C Peng', 'Teh O', 'Teh C', 'Teh Halia', 'Teh Susu', 'Teh Sereh', 'Teh Manis', 'Teh Sosro', 'Teh Kotak', 'Teh Poci', 'Teh Pucuk', 'Teh Celup', 'Teh Hijau', 'Teh Hitam', 'Teh Putih', 'Teh Oolong', 'Teh Pu-erh', 'Teh Kuning', 'Teh Herbal', 'Teh Buah', 'Teh Rooibos', 'Teh Honeybush', 'Teh Yerba Mate', 'Teh Matcha', 'Teh Chai', 'Teh Buih', 'Teh Ais', 'Teh Manis', 'Teh Thailand', 'Teh'],
+             'Hot Drink':['Hot Chocolate', 'Hot Cocoa', 'Chocolate Coffee', 'Chocolate Milk', 'Chocolate Chai'],
+             'Soda':['Diet Coke', 'Coca-Cola', 'Sprite', 'Fanta', 'Pepsi', 'Dr Pepper', 'Mountain Dew', '7 Up', 'A&W Root Beer', 'Barq\'s Root Beer', 'Canada Dry Ginger Ale', 'Cactus Cooler', 'Cherry Coke', 'Cherry Pepsi', 'Cherry 7 Up', 'Cherry Dr Pepper', 'Cherry Mountain Dew', 'Cherry Fanta', 'Cherry A&W Root Beer', 'Cherry Barq\'s Root Beer', 'Cherry Canada Dry Ginger Ale', 'Cherry Cactus Cooler', 'Coca-Cola Vanilla', 'Diet Cherry Coke', 'Diet Cherry Pepsi', 'Diet Cherry 7 Up', 'Diet Cherry Dr Pepper', 'Diet Cherry Mountain Dew', 'Diet Cherry Fanta', 'Diet Cherry A&W Root Beer', 'Diet Cherry Barq\'s Root Beer', 'Diet Cherry Canada Dry Ginger Ale', 'Diet Cherry Cactus Cooler', 'Diet Coke Vanilla', 'Diet Coke Lime', 'Diet Coke Lemon', 'Diet Coke Orange', 'Diet Coke Raspberry', 'Diet Coke Cherry', 'Diet Coke Vanilla', 'Diet Coke Lime', 'Diet Coke Lemon', 'Diet Coke Orange', 'Diet Coke Raspberry', 'Diet Coke Cherry', 'Diet Coke Vanilla', 'Diet Coke Lime', 'Diet Coke Lemon', 'Diet Coke Orange', 'Diet Coke Raspberry', 'Diet Coke Cherry', 'Diet Coke Vanilla', 'Diet Coke Lime', 'Diet Coke Lemon', 'Diet Coke Orange', 'Diet Coke Raspberry', 'Diet Coke Cherry', 'Diet Coke Vanilla', 'Diet Coke Lime', 'Diet Coke Lemon', 'Diet Coke Orange', 'Diet Coke Raspberry', 'Diet Coke Cherry', 'Diet Coke Vanilla', 'Diet Coke Lime', 'Diet Coke Lemon', 'Diet Coke Orange', 'Diet Coke Raspberry', 'Diet Coke Cherry', 'Diet Coke Vanilla', 'Diet Coke Lime', 'Diet Coke Lemon', 'Diet Coke Orange', 'Diet Coke Raspberry', 'Diet Coke Cherry', 'Diet Coke Vanilla', 'Diet Coke Lime', 'Diet Coke Lemon', 'Diet Coke Orange', 'Diet Coke Raspberry', 'Diet Coke Cherry'],
+             'Sandwich':['Chicken Sandwich', 'Ham Sandwich', 'Cheese Sandwich', 'Egg Sandwich', 'Tuna Sandwich', 'Peanut Butter Sandwich', 'BLT Sandwich', 'Club Sandwich', 'Grilled Cheese Sandwich', 'Pulled Pork Sandwich', 'Roast Beef Sandwich', 'Turkey Sandwich', 'Bacon Sandwich', 'Pastrami Sandwich', 'Reuben Sandwich', 'Sloppy Joe Sandwich', 'French Dip Sandwich', 'Monte Cristo Sandwich', 'Patty Melt Sandwich', 'Philly Cheesesteak Sandwich', 'Bologna Sandwich', 'Meatball Sandwich'],
+             'Salad':['Caesar Salad', 'Cobb Salad', 'Greek Salad', 'Waldorf Salad', 'Nicoise Salad', 'Chef Salad', 'Caprese Salad', 'Wedge Salad', 'Fattoush Salad', 'Fruit Salad', 'Panzanella Salad', 'Poke Salad', 'Potato Salad', 'Tabbouleh Salad', 'Taco Salad', 'Tuna Salad', 'Waldorf Salad', 'Watergate Salad', 'Ambrosia Salad', 'Bean Salad', 'Broccoli Salad', 'Carrot Salad', 'Chicken Salad', 'Coleslaw', 'Crab Louie', 'Egg Salad', 'Fattoush', 'Fruit Salad', 'Gado-gado', 'Garden Salad', 'Green Bean Salad', 'Ham Salad', 'Macaroni Salad', 'Olivier Salad', 'Panzanella', 'Pasta Salad', 'Potato Salad', 'Russian Salad', 'Salmagundi', 'Seafood Salad', 'Seven-layer Salad', 'Shopska Salad', 'Somen Salad', 'Tabbouleh', 'Taco Salad', 'Tuna Salad', 'Waldorf Salad', 'Watergate Salad'],
+             'Soup':['Chicken Soup', 'Tomato Soup', 'Vegetable Soup', 'Mushroom Soup', 'Minestrone Soup', 'Lentil Soup', 'Pumpkin Soup', 'Potato Soup', 'Beef Soup', 'Noodle Soup', 'Broccoli Soup', 'Carrot Soup', 'Chicken Noodle Soup', 'Chicken and Dumplings', 'Chicken and Rice Soup', 'Chicken Tortilla Soup', 'Clam Chowder', 'Corn Chowder', 'Cream of Mushroom Soup', 'French Onion Soup', 'Gazpacho', 'Gumbo', 'Hot and Sour Soup', 'Italian Wedding Soup', 'Lobster Bisque', 'Miso Soup', 'New England Clam Chowder', 'Pho', 'Potato Soup', 'Pozole', 'Pumpkin Soup', 'Tomato Soup', 'Tortilla Soup', 'Vegetable Soup', 'Wonton Soup', 'Zuppa Toscana'],
+             'Cake':['Chocolate Cake', 'Carrot Cake', 'Red Velvet Cake', 'Pound Cake', 'Sponge Cake', 'Genoise Cake', 'Chiffon Cake', 'Angel Food Cake', 'Devil\'s Food Cake', 'Black Forest Cake', 'German Chocolate Cake', 'Cupcake', 'Birthday Cake', 'Wedding Cake', 'Fruit Cake', 'Ice Cream Cake', 'Cheesecake', 'Tres Leches Cake', 'Pineapple Cake'],
+             'Cookie':['Chocolate Chip Cookie', 'Oatmeal Cookie', 'Peanut Butter Cookie', 'Sugar Cookie', 'Snickerdoodle', 'Gingerbread Cookie', 'Shortbread Cookie', 'Molasses Cookie', 'Peanut Butter Blossom', 'Macaroon', 'Biscotti', 'Fortune Cookie', 'Thumbprint Cookie', 'Peanut Butter Blossom', 'Macaroon', 'Biscotti', 'Fortune Cookie', 'Thumbprint Cookie', 'Peanut Butter Blossom', 'Macaroon', 'Biscotti', 'Fortune Cookie', 'Thumbprint Cookie', 'Peanut Butter Blossom', 'Macaroon', 'Biscotti', 'Fortune Cookie', 'Thumbprint Cookie', 'Peanut Butter Blossom', 'Macaroon', 'Biscotti', 'Fortune Cookie', 'Thumbprint Cookie', 'Peanut Butter Blossom', 'Macaroon', 'Biscotti', 'Fortune Cookie', 'Thumbprint Cookie', 'Peanut Butter Blossom', 'Macaroon', 'Biscotti', 'Fortune Cookie', 'Thumbprint Cookie', 'Peanut Butter Blossom', 'Macaroon', 'Biscotti', 'Fortune Cookie', 'Thumbprint Cookie'],
+             'Pastry':['Croissant', 'Danish', 'Cinnamon Roll', 'Bear Claw', 'Pain au Chocolat', 'Pain au Raisin', 'Pain au Lait', 'Pain aux Raisins', 'Pain aux Chocolat', 'Pain au Levain', 'Pain au Lard', 'Pain au Beurre', 'Pain au Fromage', 'Pain au Sucre', 'Pain']
+             }
+
+def generate_date(minYear, maxYear):
+    year = random.randint(minYear, maxYear)
+    month = random.randint(1, 12)
+    day = random.randint(1, 28)
+    return f'{day:02d}/{month:02d}/{year}'
+
+
+# generate 100 dummy sales records
+sales = []
+for i in range(500):
+    type = random.choice(types)
+    description = random.choice(sub_types[type])
+    price = round(random.uniform(0.5,20), 2)
+    expiry_date = generate_date(2018, 2032)
+    sales.append([type, description, price, expiry_date])
+
+# write the sales records to a CSV file
+with open('CafeItem.csv', mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Type', 'Description', 'Price', 'expiry_date'])
+    writer.writerows(sales)

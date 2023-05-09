@@ -1,0 +1,12 @@
+FUNCTION modinv(a, modulo):
+
+    g, x, y = euclideanGreatestCommmonDivisor(a, modulo)
+
+    IF g != 1 THEN
+        ERROR modular inverse does not exist
+
+    ELSE:
+        RETURN x % modulo
+    END IF
+
+END FUNCTION

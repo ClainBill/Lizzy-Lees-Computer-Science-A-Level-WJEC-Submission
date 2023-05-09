@@ -1,0 +1,47 @@
+FUNCTION mergeSortString(strings):
+
+    # Exit condition
+    IF length of strings is equal to 1 THEN
+        RETURN strings
+    END IF
+
+    # Divide list into two halves
+    mid = floor(length of strings / 2)
+    left_strings = sublist of strings from 0 to mid-1
+    right_strings = sublist of strings from mid to end
+
+    # Recursively sort each half
+    left_strings = CALL mergeSortString(left_strings)
+    right_strings = CALL mergeSortString(right_strings)
+
+    # Merge the two halves together
+    sorted_strings = empty list
+    i = j = 0
+    WHILE i is less than length of left_strings AND j is less than length of right_strings DO
+        left_string = left_strings[i]
+        right_string = right_strings[j]
+        IF (left_string[0] < right_string[0]) THEN 
+            append left_string to sorted_strings
+            i += 1
+        ELSE
+            append right_string to sorted_strings
+            j += 1
+        END IF
+    END WHILE
+
+    # Add any remaining elements in the left list
+    WHILE i is less than length of left_strings DO
+        append left_strings[i] to sorted_strings
+        i += 1
+    END WHILE
+
+    # Add any remaining elements in the right list
+    WHILE j is less than length of right_strings DO
+        append right_strings[j] to sorted_strings
+        j += 1
+    END WHILE
+
+    # Return the sorted list
+    RETURN sorted_strings
+
+END FUNCTION

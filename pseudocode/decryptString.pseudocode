@@ -1,0 +1,16 @@
+FUNCTION decrypt(encryptedMessage, privateKey):
+
+    decryptedMessage = EMPTY STRING
+    # For each character in the encrypted message
+    FOR EACH char IN encryptedMessage DO
+        # Decrypt the character code using the private key
+        decryptedChar = chr((ord(char) ** value of privateKey[1]) % value of privateKey[0])
+        
+        # Append the decrypted character to the decrypted message
+        decryptedMessage += decryptedChar
+    END FOR
+
+    # Return the decrypted message
+    RETURN decryptedMessage
+
+END FUNCTION

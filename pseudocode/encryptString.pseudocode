@@ -1,0 +1,21 @@
+FUNCTION encrypt(message, publicKey):
+
+    # Empty string for encrypted message
+    encryptedMsg = EMPTY STRING
+
+    # For each character in the message
+    FOR EACH char IN message DO
+        # Get the character code of the character
+        charCode = ASCII value of char
+        
+        # Encrypt the code using the public key
+        encryptedChar = chr(pow(charCode, value of publicKey[1]) % value of publicKey[0])
+        
+        # Append the encrypted character to the encrypted message
+        encryptedMsg += encryptedChar
+    END FOR
+
+    # Return the encrypted message
+    RETURN encryptedMsg
+
+END FUNCTION
