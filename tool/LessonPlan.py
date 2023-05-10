@@ -51,5 +51,5 @@ for i in range(20):
 # Write the lesson plans to a CSV file
 with open("LessonPlan.csv", "w", newline="") as f:
     writer = csv.writer(f)
-    writer.writerow(["LessonTitle", "lessonObjective", "materials", "procedure"])
+    writer.writerow(["lesson_title", "lesson_objective", "materials", "procedure"])
     writer.writerows(lesson_plans)

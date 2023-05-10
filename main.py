@@ -10,6 +10,7 @@ from datetime import datetime
 # import pickle
 import csv
 import re
+import traceback
 
 #module for encryption
 import binascii
@@ -65,7 +66,8 @@ class FileHandler():
             conn.commit()
             
             return True
-        
+    
+    # 8.2 - Make routine backups of all stored data.
     def closeFile(self):
         """Saves database into encrypted file and creates a backup for the current day"""        
         os.makedirs("backups", exist_ok=True)
@@ -95,6 +97,7 @@ class FileHandler():
         encryptedFile.close()
         print("Saved Encrypted File as: " + file)
     
+    # 8.1 - Encrypt all stored data to prevent personal information being leaked.
     def encrypt(self, message):
         # Convert message and key to byte arrays
         message_bytes = message.encode('utf-8')
@@ -151,7 +154,7 @@ class FileHandler():
                     town TEXT(30),
                     county TEXT(15),
                     postcode TEXT,
-                    phone_num TEXT(11),
+                    phone_number TEXT(11),
                     email TEXT(40)
             );""")
         
@@ -169,7 +172,7 @@ class FileHandler():
                     town TEXT(30),
                     county TEXT(15),
                     postcode TEXT,
-                    phone_num TEXT(11),
+                    phone_number TEXT(11),
                     email TEXT(40)
             );""")
         
@@ -203,7 +206,7 @@ class FileHandler():
                     county TEXT(15),
                     postcode TEXT,
                     phone_number TEXT(11),
-                    guardian_phone_num TEXT(11),
+                    guardian_phone_number TEXT(11),
                     email TEXT(40)
                 );
                 """)
@@ -328,7 +331,7 @@ class App(Tk):
         geometry = "+" + str(x) + "+" + str(y)
         self.geometry(geometry).format(x,y)
 
-
+#1.2 - Login system to authenticate users and grant appropriate permissions. Users will only have access to the features of the GUI their access levels allow.
 class Login(App):
     """Class for handling the login screen"""
     ###Class for handling the application###
@@ -358,7 +361,7 @@ class Login(App):
 
         # Create a button to check the user credentials
         check_button = Button(self, text='Login', command=self.checkCredentials)
-        check_button.pack()
+        check_button.pack(padx=5, pady=10)
         
         # # Create a button to skip login
         # check_button = Button(self, text='Just get me in there', command=self.skip)
@@ -664,7 +667,7 @@ class PrimaryApp(App):
     def importWin(self):
         """Window for importing a CSV file into a table"""
         self.importWin = App(500, 300)
-        self.importWin.title("Export table data")
+        self.importWin.title("Import table data")
         
         importText = Label(self.importWin, text = "Select '.csv' file and table to import data to", anchor = "center")
         importText.pack(side="top", fill="x")
@@ -679,7 +682,7 @@ class PrimaryApp(App):
         
         importButton = Button(self.importWin, text = "Import", command = lambda table=table: self.importCSV(self.tables[listbox.curselection()[0]]))
         importButton.pack(fill="x")
-
+            
         self.importWin.mainloop()
 
     #Check if filename and tables are valid and then attempt to import file
@@ -694,59 +697,66 @@ class PrimaryApp(App):
                                                        "*.*")))
         
         if filename:
-            f = open(filename, 'r', encoding='utf-8')
-            
-            #If table is not None:
-            if (table != "None"):
-                c = conn.cursor()
+            try:
+                f = open(filename, 'r', encoding='utf-8')
                 
-                sqlStatement = "SELECT MAX(id) FROM " + table
-                c.execute(sqlStatement)
-                last_id = c.fetchone()[0]
-                c.close() 
-                
-                #If last_id is not an integer (therefore probably blank), set it to 0
-                if type(last_id) is not int:
-                    idValue = 0
-                else:   
-                    idValue = int(last_id)
-                
-                            
-                #Pass the file object to reader() to get the reader object
-                reader = csv.reader(f)
-
-                #Convert the csv.reader object to a list
-                rows = list(reader)
-
-                #Get the headers from the first row of the CSV file
-                headers = rows[0]
-                
-                # Iterate through each row of the CSV file after the first line
-                for row in rows[1:]:
-                    idValue += 1
-                    
-                    # Insert only the values from the headers with data into the sql table
-                    sqlCommand = "INSERT INTO " + table +" (ID, "
-                    
-                    for column in headers:
-                        sqlCommand += column + ", "
-                    sqlCommand = sqlCommand[:-2] + ")"
-                    
-                    sqlCommand = sqlCommand + " VALUES (" + str(idValue) + ", \""
-                    
-                    for value in row:
-                        sqlCommand += value + "\", \""
-                    sqlCommand = sqlCommand[:-3]
-                    sqlCommand += ");"
-                    
-                    # print(sqlCommand)
+                #If table is not None:
+                if (table != "None"):
                     c = conn.cursor()
-                    c.execute(sqlCommand)
-                    conn.commit()
                     
-                    c.close()
-            f.close()
-            self.importWin.destroy()
+                    sqlStatement = "SELECT MAX(id) FROM " + table
+                    c.execute(sqlStatement)
+                    last_id = c.fetchone()[0]
+                    c.close() 
+                    
+                    #If last_id is not an integer (therefore probably blank), set it to 0
+                    if type(last_id) is not int:
+                        idValue = 0
+                    else:   
+                        idValue = int(last_id)
+                    
+                                
+                    #Pass the file object to reader() to get the reader object
+                    reader = csv.reader(f)
+
+                    #Convert the csv.reader object to a list
+                    rows = list(reader)
+
+                    #Get the headers from the first row of the CSV file
+                    headers = rows[0]
+                    
+                    # Iterate through each row of the CSV file after the first line
+                    for row in rows[1:]:
+                        idValue += 1
+                        
+                        # Insert only the values from the headers with data into the sql table
+                        sqlCommand = "INSERT INTO " + table +" (ID, "
+                        
+                        for column in headers:
+                            sqlCommand += column + ", "
+                        sqlCommand = sqlCommand[:-2] + ")"
+                        
+                        sqlCommand = sqlCommand + " VALUES (" + str(idValue) + ", \""
+                        
+                        for value in row:
+                            sqlCommand += value + "\", \""
+                        sqlCommand = sqlCommand[:-3]
+                        sqlCommand += ");"
+                        
+                        # print(sqlCommand)
+                        c = conn.cursor()
+                        c.execute(sqlCommand)
+                        conn.commit()
+                        
+                        c.close()
+                f.close()
+                
+                messagebox.showinfo("Success", "File imported successfully\nRefresh the table to see changes")
+                
+                self.importWin.destroy()
+            except Exception as e:
+                print(traceback.format_exc())
+                messagebox.showerror("Error", "Invalid file selected")
     
     def exportWin(self):
         """Initialises window for exporting a table's contents to a CSV file"""
@@ -768,45 +778,48 @@ class PrimaryApp(App):
         exportButton = Button(self.exportWin, text = "Export", command = lambda table=table: self.exportTable(self.tables[listbox.curselection()[0]]))
         exportButton.pack(fill="x")
         
+            
         self.exportWin.mainloop()
         
     def exportTable(self, table):
         """Exports the contents of a table to a .csv file"""
-        
-        print("Table: " + table)
-        
-        filename = filedialog.asksaveasfilename(filetypes=(("CSV files", "*.csv"), ("All files", "*.*")), defaultextension = ".csv", initialfile= str(titleCase(table) + ".csv"))
-        if filename:  # Check if a file was actually selected
-            tableContents = []
-            sqlStatement = "SELECT * FROM " + table
             
-            c= conn.cursor()
-            queryResults = c.execute(sqlStatement)
-            
-            #Get Table Columns
-            headers = []
-            for col in queryResults.description[1:]:
-                headers.append(col[0])
+        try:   
+            filename = filedialog.asksaveasfilename(filetypes=(("CSV files", "*.csv"), ("All files", "*.*")), defaultextension = ".csv", initialfile= str(titleCase(table) + ".csv"))
+            if filename:  # Check if a file was actually selected
+                tableContents = []
+                sqlStatement = "SELECT * FROM " + table
                 
-            #Add contents of table to array
-            fetchStatement = c.fetchall()
+                c= conn.cursor()
+                queryResults = c.execute(sqlStatement)
+                
+                #Get Table Columns
+                headers = []
+                for col in queryResults.description[1:]:
+                    headers.append(col[0])
                     
-            tableContents.append(headers)
-            
-            for row in fetchStatement:
-                tableContents.append(row[1:])
-            print(tableContents)
-            c.close()
-
-            # open file in write mode
-            with open(filename, 'w', newline='') as file:
-                # create a csv writer object
-                csv_writer = csv.writer(file)
+                #Add contents of table to array
+                fetchStatement = c.fetchall()
+                        
+                tableContents.append(headers)
                 
-                # write the rows of data
-                csv_writer.writerows(tableContents)
-            
-            self.exportWin.destroy()
+                for row in fetchStatement:
+                    tableContents.append(row[1:])
+                print(tableContents)
+                c.close()
+
+                # open file in write mode
+                with open(filename, 'w', newline='') as file:
+                    # create a csv writer object
+                    csv_writer = csv.writer(file)
+                    
+                    # write the rows of data
+                    csv_writer.writerows(tableContents)
+                
+                self.exportWin.destroy()
+        except Exception as e:
+            # print(traceback.format_exc())
+            messagebox.showerror("Error", "Invalid file selected")
 
 
 class PrimaryTab(Frame):
@@ -885,8 +898,8 @@ class TableFrame(Frame):
                 self.tree.column(x, anchor=CENTER, minwidth=0, width=0, stretch=False) 
             #If column is Lesson Title, Lesson Objective, Materials, or Procedure then make it's width larger  
             elif x == "lesson_title" or x == "lesson_objective" or x == "materials":
-                print("LARGER WIDTH")
                 self.tree.column(x, anchor=CENTER, minwidth=90, width=300, stretch=False)
+            #Otherwise set width to 120 and default header
             else:
                 self.tree.column(x, anchor=CENTER, minwidth=30, width=120, stretch=False)   
                              
@@ -911,7 +924,8 @@ class TableFrame(Frame):
     
     def fillTable(self, command = "*"):
         """Fills the table with the results of a SQL command"""
-                
+
+        # 3.3, 4.3, - Users can edit their own records
         c = conn.cursor()
         #If the userRole is the same as the table name then only show the logged in user's details
         if userRole == self.table.lower():
@@ -922,6 +936,7 @@ class TableFrame(Frame):
         #sqlcommand is the command passed to the class by the user
         sqlCommand = command
         
+        # 4.4 - Teachers and managers can view the progress and attendance of students in their respective lessons
         #If the user is a teacher then only show students that are connected to them through lesson bookings
         if userRole == "teacher" and self.table.lower() == "student":
             print("Getting students connected to teacher")            
@@ -963,7 +978,7 @@ class TableFrame(Frame):
         queryResults = c.fetchall()
         self.insertRows(queryResults)
         c.close()
-
+        
         return sqlCommand
         
     def insertRows(self, rows):
@@ -1118,41 +1133,57 @@ class TableFrame(Frame):
         
     def getForeignTablePersonName(self, table, ID):
         """Gets the name of the person from the foreign table"""
-        c = conn.cursor()
-        sqlCommand = """SELECT forename, surname FROM {} WHERE ID = '{}'""".format(table, ID)
-        c.execute(sqlCommand)
-        queryResults = c.fetchall()
-        c.close()
-        return queryResults[0]
+        try:
+            c = conn.cursor()
+            sqlCommand = """SELECT forename, surname FROM {} WHERE ID = '{}'""".format(table, ID)
+            c.execute(sqlCommand)
+            queryResults = c.fetchall()
+            c.close()
+            return queryResults[0]
+        except:
+            print("Error getting person name")
+            return (ID,)
     
     def getForeignTableLessonPlanTitle(self, ID):
         """Gets the title of the lesson plan from the foreign table"""
-        c = conn.cursor()
-        sqlCommand = """SELECT lessonTitle FROM LESSON_PLAN WHERE ID = '{}'""".format(ID)
-        c.execute(sqlCommand)
-        queryResults = c.fetchall()
-        c.close()
-        return queryResults[0]
-    
+        try:
+            c = conn.cursor()
+            sqlCommand = """SELECT lesson_title FROM LESSON_PLAN WHERE ID = '{}'""".format(ID)
+            c.execute(sqlCommand)
+            queryResults = c.fetchall()
+            c.close()
+            return queryResults[0]
+        except:
+            print("Error getting lesson plan title")
+            return (ID,)
+        
     def getForeignTableItemName(self, table, ID, column):
         """Gets the name of the cafe item from the foreign table"""
-        c = conn.cursor()
-        sqlCommand = """SELECT {} FROM {} WHERE ID = '{}'""".format(column, table, ID)
-        c.execute(sqlCommand)
-        queryResults = c.fetchall()
-        c.close()
-        return queryResults[0]
+        try:
+            c = conn.cursor()
+            sqlCommand = """SELECT {} FROM {} WHERE ID = '{}'""".format(column, table, ID)
+            c.execute(sqlCommand)
+            queryResults = c.fetchall()
+            c.close()
+            return queryResults[0]  
+        except:
+            print("Error getting item name")
+            return (ID,)
         
         
     def headingPushed(self, column):
         """Sorts the table by the column that was pushed"""
-        if "date" in column.lower():
-            self.sortDate(column)
-        elif column == "ID":
-            self.sortNum(column) 
-        else:
-            print("Non-specified column. Sorting as string")
-            self.sortString(column)
+        try:
+            if "date" in column.lower():
+                self.sortDate(column)
+            elif column == "ID":
+                self.sortNum(column) 
+            else:
+                print("Non-specified column. Sorting as string")
+                self.sortString(column)
+        except traceback as e:
+            print("Error sorting")
+            print(e)
     
     def sortDate(self, column):
         """Sorts the table by the dates in the column"""
@@ -1414,7 +1445,8 @@ class RecordEntry(Entry):
         super().__init__(root, *args, **kwargs)
         self.column = column
         self.table = table
-        
+    
+    # 8.3 - Validate all user input.
     def validate(self):
         """Validates the entry based on the column type"""
         #Reset the valid flag
@@ -1429,9 +1461,15 @@ class RecordEntry(Entry):
         elif "phone" in self.column.lower():
             # print("Validating " + self.get() + " as phone number")
             self.validatePhone()
+        elif self.column.lower() == "expiry_date":
+            # print("Validating " + self.get() + " as date")
+            self.validateDate()
         elif "date" in self.column.lower():
             # print("Validating " + self.get() + " as date")
             self.validatePastDate()
+        elif self.column.lower() == "postcode":
+            # print("Validating " + self.get() + " as postcode")
+            self.validatePostcode()
         elif "username" in self.column.lower():
             # print("Validating " + self.get() + " as name")
             self.validateUsername()
@@ -1441,8 +1479,12 @@ class RecordEntry(Entry):
         elif "name" in self.column.lower():
             # print("Validating " + self.get() + " as name")
             self.validateName()
+        elif self.column.lower() == "town" or self.column.lower() == "county":
+            self.validatePlace()
         elif self.column.lower() == "title":
             self.lookupCheck(lookup=["Mr", "Mrs", "Ms", "Dr", "Prof"])
+        elif self.column.lower() == "sex":
+            self.lookupCheck(lookup=["M", "F"])
         elif "job" in self.column.lower():
             self.lookupCheck(lookup=["Manager", "Employee"])
         elif self.column.lower() == "lesson_day":
@@ -1455,13 +1497,18 @@ class RecordEntry(Entry):
             self.rangeCheck(min=0, max=100)
         elif self.column.lower() == "lesson_frequency":
             self.lookupCheck(lookup=["Weekly", "Fortnightly", "Monthly"])
+        elif self.column.lower() == "price":
+            self.rangeCheck(min=0, max=99999)
+        elif self.column.lower() == "count":
+            self.rangeCheck(min=0, max=999)
 
             
         
         #Return False if the validation failed        
         if self.valid == False:
             return False
-            
+    
+    #8.3 - Validate all user input.
     def validateID(self):
         """Validates the entry as an ID"""
         valid = True
@@ -1527,7 +1574,7 @@ class RecordEntry(Entry):
         if not re.match(r"^\d{2}/\d{2}/\d{4}$", self.get()):
             messagebox.showerror('Invalid Credentials!', str(self.get() + "is not a valid date"))
             self.valid = False
-                
+        
     
     def validateEmail(self):
         """Validates the entry as an email address"""
@@ -1559,11 +1606,24 @@ class RecordEntry(Entry):
         if not re.match(r"^[A-Z][a-z]{2,25}$", self.get()):
             messagebox.showerror('Invalid Credentials!', str(self.get() + " is not a human name"))
             self.valid = False
+            
+    def validatePlace(self):
+        """Validates the entry as a place name that allows spaces"""
+        #Checks the entry contents with the regular expression:
+        if not re.match(r"^[A-Z][a-zA-Z\s-]{1,48}[a-zA-Z]$", self.get()):
+            messagebox.showerror('Invalid Credentials!', str(self.get() + " is not a place name"))
+            self.valid = False
     
     def validatePhone(self):
         """Validates the entry as a UK phone number"""
         if not re.match(r"^\+44\d{10}$|^(0\d{10})$", self.get()):
             messagebox.showerror('Invalid Credentials!', str(self.get() + " is not a valid UK phone number"))
+            self.valid = False
+            
+    def validatePostcode(self):
+        """Validates the entry as a UK postcode"""
+        if not re.match(r"^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$", self.get()):
+            messagebox.showerror('Invalid Credentials!', str(self.get() + " is not a valid UK postcode"))
             self.valid = False
 
     def lookupCheck(self, lookup):
@@ -1574,10 +1634,13 @@ class RecordEntry(Entry):
             
     def rangeCheck(self, min, max):
         """Checks if the entry is in the given range"""
-        if float(self.get()) < min or float(self.get()) > max:
-            messagebox.showerror('Invalid Credentials!', str(self.column + " must be between " + str(min) + " and " + str(max) + "\n" + str(self.get()) + " is not valid"))
+        try:
+            if float(self.get()) < min or float(self.get()) > max:
+                messagebox.showerror('Invalid Credentials!', str(self.column + " must be between " + str(min) + " and " + str(max) + "\n" + str(self.get()) + " is not valid"))
+                self.valid = False
+        except:
+            messagebox.showerror('Invalid Credentials!', str(self.column + " must be a number"))
             self.valid = False
-        
         
 class DateRange(Frame):
     """A frame containing two date entries to return a date range from the associated sql table"""
@@ -1603,10 +1666,10 @@ class DateRange(Frame):
         self.endEntry = Entry(self, textvariable = StringVar(value = "01/01/2020"))
         self.endEntry.grid(row = 2, column = 1, sticky = "ew", padx = (0, 10), pady = (10, 0))
         
-        self.submitButton = Button(self, text = "Submit", command = self.submit)
-        self.submitButton.grid(row = 1, column = 2, rowspan = 2, sticky = "nsew", padx = (0, 10), pady = (10, 0))
+        self.filterButton = Button(self, text = "Filter", command = self.filter)
+        self.filterButton.grid(row = 1, column = 2, rowspan = 2, sticky = "nsew", padx = (0, 10), pady = (10, 0))
         
-    def submit(self):
+    def filter(self):
         """Validates the dates and date range then filters treeview results that are in the range"""
         
         if self.startEntry.get() == "":
@@ -1648,7 +1711,7 @@ class DateRange(Frame):
             else:
                 return True
 
-
+# 5.6 - Filter records from a range of date options and price options
 class NumberRange(Frame):
         """A frame containing two number entries to return a number range from the associated sql table"""
         def __init__(self, root, label, table, column) -> None:
@@ -1673,10 +1736,10 @@ class NumberRange(Frame):
             self.endEntry = Entry(self)
             self.endEntry.grid(row = 2, column = 1, sticky = "ew", padx = (0, 10), pady = (10, 0))
             
-            self.submitButton = Button(self, text = "Submit", command = self.submit)
-            self.submitButton.grid(row = 1, column = 2, rowspan = 2, sticky = "nsew", padx = (0, 10), pady = (10, 0))
+            self.filterButton = Button(self, text = "Filter", command = self.filter)
+            self.filterButton.grid(row = 1, column = 2, rowspan = 2, sticky = "nsew", padx = (0, 10), pady = (10, 0))
             
-        def submit(self):
+        def filter(self):
             """Validates the numbers and number range then filters treeview results that are in the range"""
             
             if self.startEntry.get() == "":
@@ -1717,7 +1780,7 @@ class NumberRange(Frame):
                 else:
                     return True
 
-
+#2.1, 2.2, 3.1, 3.2, 4.1, 4.2, 5.1  - Managers can create, update, and delete validated records
 class Record(Frame):
     """A frame containing the record fields for a table"""
     def __init__(self, root, table) -> None:
@@ -1769,12 +1832,15 @@ class Record(Frame):
             #Place the entry in the grid
             self.entries[x].grid(row = row, column=col + 1, padx=(5,10))
         
+
+        #1.1 - Restrict app to allow different levels of access for managers, employees, teachers, and students.
         #If the table is a student, or customer table add a birthdate range search
         if self.table.table.lower() == "customer" or self.table.table.lower() == "student":
             ###Frame for containing the range search fields
             self.rangeFrame = LabelFrame(self.inputFrame, text = "Range Search")
             self.rangeFrame.grid(row = 0, column = 1, sticky ="nesw", padx=10, pady=5)
             
+            # 2.4, 3.4, 4.5 - Filter records from a range of birthdates
             self.birthdateRange = DateRange(self.rangeFrame, "Birthdate", self, 7) #7 is the column number of birthdate
             self.birthdateRange.grid(row = 0, column = 0, sticky ="nesw", padx=10, pady=5)
             
@@ -1796,6 +1862,7 @@ class Record(Frame):
             self.rangeFrame = LabelFrame(self.inputFrame, text = "Range Search")
             self.rangeFrame.grid(row = 0, column = 1, sticky ="nesw", padx=10, pady=5)
             
+            #7.1 - Calculate and display sales report given a date range
             self.priceRange = NumberRange(self.rangeFrame, "Price", self, 3) #3 is the column number with the prices
             self.priceRange.grid(row = 0, column = 0, sticky ="nesw", padx=10, pady=5)
             
@@ -1819,6 +1886,7 @@ class Record(Frame):
         self.updateButton = Button(self.query, text = "Update", command=self.updateRecord)
         self.updateButton.pack(side = "left", padx=(10,0), pady=(0,10))
         
+        #1.1 - Restrict app to allow different levels of access for managers, employees, teachers, and students.
         #managers can search, add and delete all records, employees can only search, add and delete records from the item tables and the customer table
         if userRole == "manager" or (userRole == "employee" and ("item" in table.lower()) or (table.lower() == "customer")):
                         
@@ -1902,6 +1970,8 @@ class Record(Frame):
             c.execute(sqlCommand)
             c.close()
             self.table.fillTable()
+            
+            messagebox.showinfo("Success", "Record added successfully")
         
     def updateRecord(self):
         """Update a record in the table"""
@@ -1988,37 +2058,41 @@ class Record(Frame):
 
     def filterDateRange(self, startDate, endDate, column):
         
-        #Get the query set in the Records frame
-        sqlSearchQuery = self.searchQuery()
-        print("Search Query: ", sqlSearchQuery)
-        c = conn.cursor()
-        c.execute(sqlSearchQuery)
-        queryResults = c.fetchall()
-        c.close()
-        
-        results = [row for row in queryResults]
-        
-        # Convert the start and end dates to datetime objects
-        startDate = datetime.strptime(startDate, '%d/%m/%Y')
-        endDate = datetime.strptime(endDate, '%d/%m/%Y')
+        try:
+            #Get the query set in the Records frame
+            sqlSearchQuery = self.searchQuery()
+            print("Search Query: ", sqlSearchQuery)
+            c = conn.cursor()
+            c.execute(sqlSearchQuery)
+            queryResults = c.fetchall()
+            c.close()
+            
+            results = [row for row in queryResults]
+            
+            # Convert the start and end dates to datetime objects
+            startDate = datetime.strptime(startDate, '%d/%m/%Y')
+            endDate = datetime.strptime(endDate, '%d/%m/%Y')
 
-        # Create an empty list to store the selected dates
-        rowsInRange = []
+            # Create an empty list to store the selected dates
+            rowsInRange = []
 
-        # Loop through each date in the input list
-        for row in results:
-            # Check if the date is not None
-            if row[column] != 'None':
-                # Convert the date string to a datetime object
-                date = datetime.strptime(row[column], '%d/%m/%Y')
+            # Loop through each date in the input list
+            for row in results:
+                # Check if the date is not None
+                if row[column] != 'None' and row[column] != '' and row[column] != None:
+                    # Convert the date string to a datetime object
+                    date = datetime.strptime(row[column], '%d/%m/%Y')
 
-                # Check if the date falls within the given range
-                if startDate <= date <= endDate:
-                    # Add the date to the list of selected dates
-                    rowsInRange.append(row)
-                
-        print(rowsInRange)
-        self.table.insertRows(rowsInRange)
+                    # Check if the date falls within the given range
+                    if startDate <= date <= endDate:
+                        # Add the date to the list of selected dates
+                        rowsInRange.append(row)
+                    
+            print(rowsInRange)
+            self.table.insertRows(rowsInRange)
+        except ValueError as e:
+            messagebox.showerror("Error", "Please enter a valid date in the format DD/MM/YYYY")
+            print(e)
 
     def filterNumberRange(self, startNumber, endNumber, column):
         
@@ -2038,7 +2112,7 @@ class Record(Frame):
         # Loop through each number in the input list
         for row in results:
             # Check if the number is not None
-            if row[column] != 'None':
+            if row[column] != 'None' and row[column] != '' and row[column] != None:
                 # Convert the number to a float rounded to 2 decimal places
                 number = float(row[column])
 
@@ -2050,6 +2124,7 @@ class Record(Frame):
         print(rowsInRange)
         self.table.insertRows(rowsInRange)
 
+#6.1 - Managers can create, update, and delete each student’s lesson bookings.
 class Booking(Record):
     """Class for handling bookings"""
     def __init__(self, *args, **kwargs) -> None:
@@ -2063,6 +2138,7 @@ class Booking(Record):
         #Bind return key to calculateCost()
         self.table.tree.bind("<Return>", lambda e: self.calculateCost())
 
+        # 7.3 - Display estimate of revenue from student lessons
         ### Calculation results
         self.revenueFrame = TextFrame(self, width=500, height = 300)
         self.revenueFrame.grid(row = 0, column = 1, sticky = "nesw", pady = (5, 10), padx = (0,10))
@@ -2079,6 +2155,7 @@ class Booking(Record):
         
         Label(self.exportCalculationFrame, text = "Export as .txt file: ").grid(row = 1, column = 0)
         
+        #7.4 - Support exporting calculations to .txt or .csv format.
         self.exportButton = Button(self.exportCalculationFrame, text = "Export", command = self.exportCalculation)
         self.exportButton.grid(row = 1, column = 1)
                 
@@ -2090,7 +2167,8 @@ class Booking(Record):
         self.revenueFrame.text['state'] = "normal"
         self.revenueFrame.text.delete(1.0, END)
         self.revenueFrame.text['state'] = "disabled"
-        
+    
+    #7.3 - Display estimate of revenue from student lessons
     def calculateCost(self):
         """Calculate the cost of the selected rows"""
         #Get selected rows
@@ -2160,7 +2238,9 @@ class Booking(Record):
             self.revenueFrame.text.delete(1.0, END)
             self.revenueFrame.text.insert(END, "Nothing to export")
             self.revenueFrame.text['state'] = "disabled"
-    
+
+# 6.2 - Managers and teachers can view searchable and sorted lists of student reports
+# 6.3 - Teachers can submit lesson reports after each lesson
 class Report(Record):
     """Class for handling lesson reports"""
     def __init__(self, *args, **kwargs) -> None:
@@ -2229,7 +2309,8 @@ class Report(Record):
         c.close()
         self.noteText.text['state'] = "disabled"
         self.table.fillTable() #update table
-        
+
+# 6.4, 6.5 - Managers can create and view sortable  list of lesson plans.v
 class Plan(Record):
     """Class for handling lesson plans"""
     def __init__(self, *args, **kwargs) -> None:
@@ -2298,7 +2379,9 @@ class Plan(Record):
         c.close()
         self.procedureText.text['state'] = "disabled"
         self.table.fillTable() #update table
-        
+
+# 2.3 - Display the purchase history of customers in a searchable and sorted table.
+# 5.3 - Track sales from user input.
 class Sale(Record):
     """Class for handling sale reports"""
     def __init__(self, *args, **kwargs) -> None:
@@ -2311,14 +2394,14 @@ class Sale(Record):
         
         self.table.tree["selectmode"] = "extended"
         
-        
+        #1.1 - Restrict app to allow different levels of access for managers, employees, teachers, and students.
         # #All employees can search and add records
         if userRole == "employee":
             self.searchButton = Button(self.query, text = "Search", command=self.searchQuery)
-            self.searchButton.pack(side = "left")
+            self.searchButton.pack(side = "left", padx=(10,0), pady=(0,10))
                 
             self.addRecordButton = Button(self.query, text = "Add Record", command=partial(self.addRecord))
-            self.addRecordButton.pack(side = "left")
+            self.addRecordButton.pack(side = "left", padx=(10,0), pady=(0,10))
         
         ### Calculation results
         self.salesFrame = LabelFrame(self, text = "Sales Estimate")
@@ -2382,7 +2465,8 @@ class Sale(Record):
             self.salesText.text.insert(END, str("Total Revenue: £" + str(round(salesCost, 2))))
             self.salesText.text['state'] = "disabled"
 
-
+# 5.2 - Record inventory levels over a period of time.
+# 5.5 - Allow managers to add items to inventory levels.
 class Inventory(Record):
     """Class for handling inventory information"""
     def __init__(self, *args, **kwargs) -> None:
@@ -2395,17 +2479,18 @@ class Inventory(Record):
         
         self.table.tree["selectmode"] = "extended"
         
+        #1.1 - Restrict app to allow different levels of access for managers, employees, teachers, and students.
         #Only the manager can update or delete records, but all employees can search and add records
         if userRole != "manager":
             self.updateButton.destroy()
-            
-        self.searchButton = Button(self.query, text = "Search", command=self.searchQuery)
-        self.searchButton.pack(side = "left")
-            
-        self.addRecordButton = Button(self.query, text = "Add Record", command=partial(self.addRecord))
-        self.addRecordButton.pack(side = "left")
+                
+            self.searchButton = Button(self.query, text = "Search", command=self.searchQuery)
+            self.searchButton.pack(side = "left", padx=(10,0), pady=(0,10))
+                
+            self.addRecordButton = Button(self.query, text = "Add Record", command=partial(self.addRecord))
+            self.addRecordButton.pack(side = "left", padx=(10,0), pady=(0,10))
         
-        
+        # 7.2 - Calculate and display value of inventory
         ### Calculation results
         self.inventoryFrame = LabelFrame(self, text = "Inventory Estimate")
         self.inventoryFrame.grid(row = 0, column = 1, sticky = "nesw", pady = (5, 10), padx = (0,10))

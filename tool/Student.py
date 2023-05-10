@@ -21,14 +21,14 @@ def generate_date():
 def generate_dummy_data(num_records):
     with open("Students.csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["username", "password", "forename", "surname", "sex", "title", "birthdate", "town", "county", "postcode", "phone_num", "guardian_phone_num", "email"])
+        writer.writerow(["username", "password", "forename", "surname", "sex", "title", "birthdate", "town", "county", "postcode", "phone_number", "guardian_phone_number", "email"])
         for i in range(num_records):
             username = random.choice(forenames) + str(random.randint(100, 999))
             password = "P@ssw0rd" + str(random.randint(100, 999))
             forename = random.choice(forenames)
             surname = random.choice(surnames)
             sex = random.choice(["M", "F"])
-            title = random.choice(["Mr", "Mrs", "Miss", "Ms"])
+            title = random.choice(["Mr", "Mrs", "Ms"])
             birthdate = generate_date()
             hire_date = generate_date()
             town = random.choice(towns)

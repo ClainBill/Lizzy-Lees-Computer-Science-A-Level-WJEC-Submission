@@ -3,7 +3,7 @@ import random
 import string
 
 # Define the headers for the CSV file
-headers = ['forename', 'surname', 'sex', 'title', 'birthdate', 'town', 'county', 'postcode', 'phone_num', 'email']
+headers = ['forename', 'surname', 'sex', 'title', 'birthdate', 'town', 'county', 'postcode', 'phone_number', 'email']
 
 # Define some arrays for generating random data
 welsh_forenames = ['Aled', 'Bryn', 'Carys', 'Dafydd', 'Elin', 'Ffion', 'Gareth', 'Huw', 'Iwan', 'Jade', 'Katie', 'Llion', 'Megan', 'Nia', 'Owain', 'Rhian', 'Sian', 'Tegan', 'Urien', 'Wyn']
@@ -31,7 +31,7 @@ def generate_sex():
     return random.choice(['M', 'F'])
 
 def generate_title():
-    return random.choice(['Mr', 'Mrs', 'Miss', 'Ms', 'Dr'])
+    return random.choice(['Mr', 'Mrs', 'Ms', 'Dr'])
 
 def generate_birthdate():
     year = random.randint(1960, 2000)

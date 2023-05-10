@@ -1,0 +1,21 @@
+username,password,forename,surname,sex,title,birthdate,hire_date,town,county,postcode,phone_number,email
+uprice,Passw0rd!34,Urien,Price,F,Mr,11/03/1994,13/06/2010,Amlwch,Gwynedd,LL77 6CJ,09974965989,urien.price@example.com
+iprice,Passw0rd!14,Iwan,Price,M,Mr,17/06/1969,08/01/2019,Llanbadrig,Anglesey,LL77 2UR,07119221249,iwan.price@example.com
+ania,Passw0rd!98,Aled,Nia,M,Mr,21/02/1978,08/09/2016,Holyhead,Anglesey,LL77 5WJ,09710752897,aled.nia@example.com
+dnia,Passw0rd!30,Dafydd,Nia,M,Mr,09/12/2000,05/12/2010,Llanerchymedd,Conwy,LL77 3HX,09030469414,dafydd.nia@example.com
+iyorath,Passw0rd!16,Iwan,Yorath,F,Dr,04/03/1992,15/06/2012,Llanerchymedd,Anglesey,LL77 1WI,07125429110,iwan.yorath@example.com
+gidris,Passw0rd!26,Gareth,Idris,F,Dr,26/01/1968,03/02/2022,Gaerwen,Anglesey,LL77 8FH,07065181074,gareth.idris@example.com
+mjones,Passw0rd!73,Megan,Jones,M,Mr,14/01/1971,10/11/2018,Amlwch,Gwynedd,LL77 8XX,08474887785,megan.jones@example.com
+sceri,Passw0rd!61,Sian,Ceri,F,Mr,16/01/1974,22/06/2022,Amlwch,Anglesey,LL77 7IB,09102367714,sian.ceri@example.com
+ifychan,Passw0rd!100,Iwan,Fychan,M,Mrs,18/08/1990,05/02/2019,Llandegfan,Gwynedd,LL77 7EJ,09634777619,iwan.fychan@example.com
+kwalters,Passw0rd!76,Katie,Walters,M,Ms,11/11/1982,14/09/2019,Llanerchymedd,Anglesey,LL77 8PR,08497742032,katie.walters@example.com
+uhedd,Passw0rd!76,Urien,Hedd,M,Mr,01/04/1997,03/11/2014,Gaerwen,Anglesey,LL77 7LM,07387425891,urien.hedd@example.com
+fthomas,Passw0rd!84,Ffion,Thomas,F,Mr,14/03/1994,15/07/2016,Holyhead,Conwy,LL77 2RX,07024940712,ffion.thomas@example.com
+kroberts,Passw0rd!76,Katie,Roberts,M,Mr,18/05/1981,02/12/2011,Beaumaris,Anglesey,LL77 2CR,07221093260,katie.roberts@example.com
+aedwards,Passw0rd!73,Aled,Edwards,M,Dr,22/10/1986,04/01/2022,Amlwch,Anglesey,LL77 8DQ,09380200702,aled.edwards@example.com
+uthomas,Passw0rd!1,Urien,Thomas,M,Dr,02/03/1973,25/08/2017,Menai Bridge,Conwy,LL77 5UL,07358770704,urien.thomas@example.com
+omorgan,Passw0rd!58,Owain,Morgan,M,Dr,13/02/1963,10/09/2010,Rhosneigr,Gwynedd,LL77 7UE,08459951885,owain.morgan@example.com
+obevan,Passw0rd!24,Owain,Bevan,M,Mr,18/04/1977,28/06/2014,Moelfre,Conwy,LL77 1HA,09760684248,owain.bevan@example.com
+dnia,Passw0rd!64,Dafydd,Nia,F,Mr,06/02/1963,16/06/2012,Llandegfan,Conwy,LL77 6DA,09365018900,dafydd.nia@example.com
+tfychan,Passw0rd!70,Tegan,Fychan,M,Dr,09/08/1965,27/07/2014,Bodedern,Gwynedd,LL77 2GG,07153190067,tegan.fychan@example.com
+bedwards,Passw0rd!92,Bryn,Edwards,F,Dr,17/05/1975,28/08/2013,Llandegfan,Conwy,LL77 7KD,07785382880,bryn.edwards@example.com

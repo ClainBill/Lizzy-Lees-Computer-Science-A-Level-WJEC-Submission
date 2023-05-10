@@ -3,7 +3,7 @@ import random
 import string
 
 # Define the headers for the CSV file
-headers = ['username', 'password', 'forename', 'surname', 'sex', 'title', 'birthdate', 'hire_date', 'town', 'county', 'postcode', 'phone_num', 'email']
+headers = ['username', 'password', 'forename', 'surname', 'sex', 'title', 'birthdate', 'hire_date', 'town', 'county', 'postcode', 'phone_number', 'email']
 
 # Define some arrays for generating random data
 welsh_forenames = ['Aled', 'Bryn', 'Carys', 'Dafydd', 'Elin', 'Ffion', 'Gareth', 'Huw', 'Iwan', 'Jade', 'Katie', 'Llion', 'Megan', 'Nia', 'Owain', 'Rhian', 'Sian', 'Tegan', 'Urien', 'Wyn']
@@ -19,7 +19,7 @@ def generate_username(forename, surname):
     return (forename[0] + surname).lower()
 
 def generate_password():
-    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10)) + "!"
+    return "Passw0rd!" + str(random.randint(1, 100))
 
 def generate_welsh_forename():
     return random.choice(welsh_forenames)
@@ -31,7 +31,7 @@ def generate_sex():
     return random.choice(['M', 'F'])
 
 def generate_title():
-    return random.choice(['Mr', 'Mrs', 'Miss', 'Ms', 'Dr'])
+    return random.choice(['Mr', 'Mrs', 'Ms', 'Dr'])
 
 def generate_birthdate():
     year = random.randint(1960, 2000)
@@ -46,7 +46,7 @@ def generate_hire_date():
     return f'{day:02d}/{month:02d}/{year}'
 
 def generate_job_description():
-    return random.choice(['Manager', 'Crew'])
+    return random.choice(['Manager', 'Employee'])
 
 def generate_town():
     return random.choice(anglesey_towns)
@@ -59,7 +59,6 @@ def generate_phone_number():
     for i in range(9):
         phone_number += str(random.randint(0, 9))
     return phone_number
-
 
 def generate_postcode():
   """Generates a random Anglesey postcode following the format "LL77 nll".
@@ -93,7 +92,6 @@ with open('Teacher.csv', 'w', newline='') as csvfile:
             generate_title(),
             generate_birthdate(),
             generate_hire_date(),
-            # generate_job_description(),
             generate_town(),
             generate_county(),
             generate_postcode(),

@@ -3,7 +3,7 @@ import random
 import string
 
 # Define the headers for the CSV file
-headers = ['username', 'password', 'forename', 'surname', 'sex', 'title', 'birthdate', 'hire_date', 'job_description', 'town', 'county', 'postcode', 'phone_num', 'email']
+headers = ['username', 'password', 'forename', 'surname', 'sex', 'title', 'birthdate', 'hire_date', 'job_description', 'town', 'county', 'postcode', 'phone_number', 'email']
 
 # Define some arrays for generating random data
 welsh_forenames = ['Aled', 'Bryn', 'Carys', 'Dafydd', 'Elin', 'Ffion', 'Gareth', 'Huw', 'Iwan', 'Jade', 'Katie', 'Llion', 'Megan', 'Nia', 'Owain', 'Rhian', 'Sian', 'Tegan', 'Urien', 'Wyn']

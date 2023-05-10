@@ -33,5 +33,5 @@ for i in range(200):
 # Write the data to a CSV file
 with open("StudentBookings.csv", "w", newline="") as csv_file:
     writer = csv.writer(csv_file)
-    writer.writerow(["StudentID", "TeacherID", "location", "lesson_frequency", "lesson_day", "lesson_time", "lesson_length", "lesson_cost", "booking_date", "booking_update", "cancelled"])
+    writer.writerow(["StudentID", "TeacherID", "location", "lesson_frequency", "lesson_day", "lesson_time", "lesson_length", "lesson_cost", "booking_date", "last_update", "cancelled"])
     writer.writerows(data)

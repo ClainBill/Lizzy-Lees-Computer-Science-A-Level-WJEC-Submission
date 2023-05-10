@@ -1,0 +1,501 @@
+Type,Description,Price,expiry_date
+Cookie,Thumbprint Cookie,18.14,12/09/2029
+Pastry,Pain au Raisin,13.57,17/06/2027
+Salad,Seafood Salad,11.31,15/09/2020
+Soda,Cactus Cooler,7.3,09/12/2020
+Salad,Somen Salad,12.96,28/08/2021
+Tea,Teh Chai,19.5,26/11/2027
+Pastry,Pain au Lait,7.22,19/05/2024
+Pastry,Pain au Levain,3.98,15/12/2026
+Cookie,Peanut Butter Blossom,18.91,20/02/2027
+Pastry,Pain aux Raisins,2.06,17/08/2023
+Hot Drink,Chocolate Milk,6.46,14/06/2024
+Cookie,Fortune Cookie,3.79,20/04/2024
+Soda,Cherry 7 Up,3.25,27/07/2031
+Salad,Carrot Salad,19.65,18/05/2022
+Soda,Cherry A&W Root Beer,17.22,08/02/2025
+Soda,Diet Coke Raspberry,1.37,05/04/2027
+Salad,Tabbouleh,7.04,12/10/2032
+Salad,Tuna Salad,1.61,20/06/2024
+Pastry,Pain au Levain,1.6,05/05/2023
+Soup,French Onion Soup,15.0,22/12/2023
+Sandwich,Club Sandwich,12.73,06/12/2020
+Sandwich,Ham Sandwich,12.25,23/08/2023
+Soda,Diet Coke Orange,10.21,06/12/2027
+Soda,Diet Coke Orange,1.82,27/11/2028
+Soup,Vegetable Soup,1.72,02/04/2029
+Cookie,Biscotti,7.18,20/07/2030
+Cookie,Chocolate Chip Cookie,4.91,01/01/2026
+Cake,Chiffon Cake,15.05,05/06/2018
+Tea,Masala Chai,16.4,21/11/2021
+Coffee,Black Coffee,1.84,18/06/2025
+Tea,Teh Yerba Mate,1.96,23/10/2021
+Coffee,Cafe Mocha,8.89,21/11/2032
+Hot Drink,Chocolate Chai,14.23,25/07/2019
+Soda,Diet Coke Cherry,6.14,12/10/2024
+Sandwich,Egg Sandwich,4.2,13/06/2028
+Sandwich,Pastrami Sandwich,18.49,22/06/2028
+Cake,Tres Leches Cake,18.47,27/01/2021
+Salad,Tuna Salad,5.68,15/06/2024
+Hot Drink,Chocolate Milk,10.17,05/11/2028
+Soup,Vegetable Soup,1.36,24/12/2022
+Coffee,Viennese Coffee,4.25,26/08/2032
+Coffee,Caffe Ristretto,1.03,09/08/2022
+Coffee,Caffe Breve,11.24,21/08/2019
+Soda,Diet Cherry Dr Pepper,13.48,02/05/2029
+Sandwich,Monte Cristo Sandwich,13.46,28/09/2026
+Sandwich,French Dip Sandwich,19.72,18/08/2022
+Cookie,Fortune Cookie,6.63,23/09/2026
+Cookie,Macaroon,12.88,22/08/2023
+Salad,Salmagundi,18.65,14/10/2021
+Soda,Diet Coke Cherry,3.83,18/02/2027
+Sandwich,Turkey Sandwich,16.77,13/06/2024
+Coffee,Cafe Melange,0.62,07/01/2020
+Hot Drink,Chocolate Milk,16.37,08/04/2024
+Salad,Shopska Salad,11.52,20/05/2022
+Soda,Diet Coke,15.05,05/08/2026
+Tea,Teh Chai,7.42,28/03/2023
+Salad,Tabbouleh Salad,15.35,05/05/2019
+Coffee,Cafe Macchiato,18.43,18/07/2027
+Hot Drink,Chocolate Chai,0.57,20/03/2028
+Hot Drink,Hot Chocolate,2.45,14/05/2022
+Salad,Fruit Salad,3.54,19/01/2027
+Pastry,Pain au Sucre,9.6,16/01/2020
+Sandwich,Cheese Sandwich,1.43,10/10/2028
+Cookie,Fortune Cookie,2.21,24/10/2019
+Tea,Teh Halia,1.75,04/12/2028
+Salad,Bean Salad,15.87,15/02/2021
+Hot Drink,Hot Cocoa,8.75,22/09/2019
+Cookie,Thumbprint Cookie,4.28,04/01/2029
+Coffee,Espresso,14.52,24/09/2031
+Soup,Lentil Soup,7.62,19/03/2031
+Salad,Fruit Salad,5.56,19/02/2027
+Cake,German Chocolate Cake,2.12,28/06/2022
+Pastry,Cinnamon Roll,7.86,03/09/2028
+Soup,Corn Chowder,1.4,05/08/2024
+Cake,Cupcake,9.83,18/06/2018
+Coffee,Caffe Tobio,15.69,18/02/2032
+Pastry,Pain au Levain,15.35,24/10/2030
+Cookie,Biscotti,10.75,20/04/2027
+Sandwich,Monte Cristo Sandwich,18.64,05/07/2021
+Coffee,Caffe Americano,1.47,01/06/2028
+Coffee,Viennese Coffee,4.16,21/11/2027
+Pastry,Pain au Lait,19.38,27/12/2020
+Soda,Cherry Coke,6.24,21/04/2022
+Cake,Cheesecake,14.39,22/01/2022
+Soup,Clam Chowder,14.62,09/08/2032
+Salad,Seafood Salad,4.85,11/11/2030
+Soda,Diet Coke Orange,5.61,05/03/2032
+Cookie,Peanut Butter Blossom,2.17,19/12/2018
+Tea,Teh Ais,12.67,09/08/2027
+Salad,Shopska Salad,0.63,10/03/2022
+Cake,Pineapple Cake,12.0,19/02/2028
+Salad,Green Bean Salad,3.48,20/02/2023
+Cookie,Macaroon,5.02,19/04/2023
+Coffee,Cafe Melange,3.86,05/12/2021
+Cookie,Biscotti,14.31,04/09/2020
+Tea,Teh Manis,8.71,02/08/2025
+Coffee,Cafe Miel,0.82,10/11/2030
+Hot Drink,Chocolate Coffee,19.34,19/03/2032
+Soda,Diet Coke Lime,8.32,23/02/2029
+Salad,Wedge Salad,4.98,10/07/2029
+Coffee,Cafe Macchiato,4.68,05/01/2022
+Hot Drink,Chocolate Chai,4.98,01/05/2023
+Pastry,Danish,12.01,20/02/2028
+Salad,Cobb Salad,9.79,24/04/2020
+Pastry,Pain au Lard,13.28,22/12/2018
+Cake,Tres Leches Cake,7.08,01/10/2028
+Soda,Diet Cherry Canada Dry Ginger Ale,8.04,05/10/2026
+Pastry,Pain au Lait,5.77,05/04/2028
+Pastry,Pain au Sucre,16.51,21/06/2030
+Pastry,Pain au Chocolat,3.08,26/02/2020
+Coffee,Cafe Noisette,7.02,05/11/2031
+Coffee,Cafe Con Mocha,11.45,15/07/2026
+Tea,Teh Matcha,13.33,08/10/2020
+Pastry,Danish,5.96,26/05/2026
+Pastry,Pain au Fromage,3.51,07/05/2021
+Salad,Tabbouleh Salad,6.95,22/05/2022
+Sandwich,Sloppy Joe Sandwich,11.72,22/04/2025
+Hot Drink,Hot Cocoa,10.41,25/10/2023
+Sandwich,Sloppy Joe Sandwich,10.57,03/01/2020
+Sandwich,Bologna Sandwich,15.99,12/08/2018
+Sandwich,Pulled Pork Sandwich,14.07,28/06/2025
+Hot Drink,Hot Chocolate,17.17,08/12/2022
+Hot Drink,Chocolate Coffee,13.2,22/08/2026
+Hot Drink,Hot Cocoa,13.58,28/11/2024
+Coffee,Cafe Con Miel,9.56,14/03/2021
+Coffee,Caffe Americano,9.68,04/04/2018
+Tea,Teh Hijau,14.41,05/01/2030
+Hot Drink,Chocolate Chai,19.27,24/04/2020
+Hot Drink,Chocolate Milk,1.14,17/01/2031
+Tea,Teh Putih,14.49,10/02/2018
+Hot Drink,Hot Chocolate,9.16,18/03/2024
+Soup,Tortilla Soup,10.31,06/10/2025
+Sandwich,Reuben Sandwich,2.21,02/11/2018
+Sandwich,Tuna Sandwich,16.76,20/04/2031
+Cookie,Macaroon,4.81,03/10/2030
+Cake,Ice Cream Cake,10.67,28/03/2018
+Hot Drink,Chocolate Coffee,11.86,01/10/2020
+Soup,Noodle Soup,12.09,25/01/2023
+Coffee,Caffe Macchiato,14.53,16/07/2020
+Hot Drink,Chocolate Milk,16.79,01/01/2028
+Tea,Teh Halia,17.7,03/08/2032
+Coffee,Cafe Con Mocha,17.04,09/12/2031
+Soup,Italian Wedding Soup,17.61,14/05/2025
+Soda,Diet Coke Raspberry,15.54,16/11/2019
+Coffee,Cafe Con Leche,1.98,10/01/2018
+Cake,Chocolate Cake,3.83,13/01/2032
+Coffee,Caffe Latte,2.38,06/06/2023
+Sandwich,Bacon Sandwich,10.37,06/07/2026
+Soda,Diet Coke Raspberry,17.44,12/03/2018
+Pastry,Cinnamon Roll,2.63,06/09/2030
+Hot Drink,Hot Cocoa,10.13,28/06/2025
+Cookie,Biscotti,14.45,09/04/2023
+Hot Drink,Chocolate Chai,3.03,28/03/2026
+Soup,Zuppa Toscana,3.68,12/08/2021
+Cookie,Macaroon,12.91,03/05/2030
+Salad,Caprese Salad,13.03,08/07/2029
+Coffee,Latte,10.81,11/01/2023
+Soup,Cream of Mushroom Soup,7.53,05/11/2018
+Pastry,Pain aux Chocolat,3.53,06/01/2024
+Hot Drink,Hot Chocolate,10.99,12/09/2032
+Soup,Broccoli Soup,7.14,01/06/2022
+Soda,Diet Coke,17.77,20/07/2026
+Soda,Diet Coke Lemon,12.39,04/05/2018
+Soda,A&W Root Beer,9.46,12/02/2030
+Cookie,Fortune Cookie,2.67,18/11/2032
+Salad,Fruit Salad,5.69,13/04/2020
+Sandwich,Pastrami Sandwich,9.49,28/11/2018
+Tea,Yellow Tea,5.17,08/07/2025
+Tea,Teh Sosro,14.33,23/01/2018
+Tea,Teh Pucuk,13.46,07/09/2026
+Cookie,Thumbprint Cookie,18.09,13/11/2029
+Tea,Teh Thailand,13.85,19/08/2031
+Coffee,Irish Coffee,17.1,12/08/2030
+Tea,Pu-erh Tea,4.43,13/12/2019
+Pastry,Pain au Lait,17.64,12/10/2030
+Soda,Cherry Fanta,3.08,16/04/2024
+Coffee,Cafe Au Lait,12.23,28/11/2021
+Soda,Diet Coke Vanilla,12.21,11/08/2032
+Salad,Macaroni Salad,4.97,07/09/2026
+Sandwich,Cheese Sandwich,19.08,01/01/2030
+Coffee,Irish Coffee,19.93,21/11/2024
+Soda,Diet Coke Cherry,0.68,18/07/2028
+Hot Drink,Chocolate Milk,0.93,19/10/2020
+Coffee,Cafe Con Leche,7.21,05/01/2019
+Cookie,Fortune Cookie,10.2,16/10/2018
+Salad,Taco Salad,7.69,13/10/2020
+Pastry,Bear Claw,3.69,04/02/2027
+Coffee,Caffe Breve,2.89,04/04/2024
+Soup,Carrot Soup,17.17,22/01/2028
+Tea,Iced Tea,7.9,03/11/2031
+Pastry,Pain,4.08,20/12/2023
+Soda,Diet Coke Orange,1.51,04/06/2022
+Cake,Pineapple Cake,17.95,26/03/2023
+Soup,Pumpkin Soup,2.88,11/07/2023
+Salad,Seven-layer Salad,10.66,07/04/2021
+Sandwich,Turkey Sandwich,2.81,20/06/2026
+Tea,Teh Thailand,8.79,15/07/2023
+Soda,Diet Cherry Coke,1.41,03/12/2018
+Soda,Diet Coke Orange,4.04,22/10/2026
+Sandwich,French Dip Sandwich,13.41,16/01/2018
+Sandwich,Reuben Sandwich,19.42,15/04/2029
+Soda,Diet Coke Vanilla,18.86,19/02/2030
+Soda,Diet Coke Lemon,5.35,25/10/2020
+Salad,Fruit Salad,14.89,19/05/2021
+Salad,Pasta Salad,13.94,17/04/2026
+Hot Drink,Chocolate Chai,5.8,24/10/2032
+Soda,Diet Coke Raspberry,18.23,07/05/2025
+Soda,Diet Coke Lime,16.23,23/06/2027
+Tea,Teh O,9.6,04/08/2027
+Sandwich,Roast Beef Sandwich,19.71,11/03/2020
+Sandwich,French Dip Sandwich,1.68,27/11/2029
+Sandwich,Bacon Sandwich,13.22,07/05/2019
+Soda,Diet Coke Lime,7.45,05/12/2018
+Cookie,Fortune Cookie,4.04,17/10/2022
+Sandwich,Meatball Sandwich,4.15,19/07/2030
+Salad,Taco Salad,10.64,25/08/2030
+Sandwich,Ham Sandwich,18.04,03/06/2019
+Salad,Ambrosia Salad,5.73,23/08/2022
+Hot Drink,Hot Chocolate,16.12,24/12/2019
+Tea,Teh Manis,4.36,18/03/2028
+Hot Drink,Chocolate Milk,19.64,21/06/2026
+Cake,Tres Leches Cake,17.37,13/04/2026
+Salad,Watergate Salad,18.42,25/12/2030
+Soup,Mushroom Soup,3.66,15/11/2019
+Tea,Teh Buih,9.62,17/06/2018
+Soda,Diet Coke Lemon,11.06,21/09/2024
+Hot Drink,Chocolate Milk,11.9,18/09/2025
+Sandwich,Ham Sandwich,2.62,16/05/2023
+Coffee,Irish Coffee,11.35,04/09/2030
+Tea,Teh Thailand,0.86,09/03/2031
+Coffee,Turkish Coffee,13.79,18/11/2030
+Coffee,Cafe Noisette,8.31,27/06/2029
+Pastry,Pain au Lard,14.15,11/04/2028
+Sandwich,BLT Sandwich,18.14,27/06/2019
+Soda,Diet Cherry Mountain Dew,12.55,27/04/2018
+Soda,Diet Cherry Dr Pepper,1.61,27/12/2021
+Sandwich,French Dip Sandwich,16.89,16/09/2018
+Sandwich,Tuna Sandwich,19.54,28/12/2026
+Sandwich,BLT Sandwich,9.27,13/01/2023
+Pastry,Pain au Beurre,15.33,05/10/2026
+Pastry,Pain,17.15,02/08/2022
+Soup,Carrot Soup,0.77,22/06/2026
+Soda,Diet Coke Vanilla,16.83,12/04/2026
+Salad,Ham Salad,1.72,26/10/2031
+Coffee,Americano,6.83,14/09/2028
+Soda,Diet Coke Cherry,10.48,26/11/2032
+Salad,Taco Salad,13.26,17/11/2019
+Pastry,Pain au Levain,5.49,03/11/2029
+Soda,Diet Coke Vanilla,1.44,13/03/2019
+Sandwich,Pulled Pork Sandwich,4.1,16/03/2031
+Cake,Black Forest Cake,17.07,18/09/2023
+Cookie,Fortune Cookie,19.42,21/01/2022
+Tea,Teh Pu-erh,10.96,14/12/2028
+Soup,Noodle Soup,10.21,20/12/2030
+Hot Drink,Hot Chocolate,15.37,05/01/2029
+Soda,Diet Coke Orange,1.58,20/09/2032
+Soda,Diet Coke Orange,2.97,26/11/2018
+Sandwich,Tuna Sandwich,16.12,15/06/2021
+Hot Drink,Chocolate Chai,13.29,19/07/2019
+Coffee,Caffe Tobio,1.4,14/08/2027
+Soda,Barq's Root Beer,8.51,15/08/2028
+Sandwich,Sloppy Joe Sandwich,19.49,22/10/2029
+Cookie,Fortune Cookie,13.1,17/03/2018
+Pastry,Pain au Fromage,1.69,16/05/2023
+Tea,Teh Ais,1.09,27/12/2027
+Sandwich,Peanut Butter Sandwich,3.45,14/03/2029
+Soup,Vegetable Soup,6.26,28/01/2022
+Pastry,Pain au Beurre,18.07,25/12/2031
+Salad,Caesar Salad,0.92,09/10/2027
+Soup,Hot and Sour Soup,11.87,02/04/2019
+Salad,Shopska Salad,4.38,25/07/2026
+Hot Drink,Chocolate Chai,7.55,27/11/2031
+Cookie,Oatmeal Cookie,13.35,11/09/2019
+Sandwich,Tuna Sandwich,5.59,13/03/2024
+Soup,Minestrone Soup,1.98,09/02/2031
+Cake,Chiffon Cake,3.16,09/05/2025
+Hot Drink,Hot Chocolate,11.31,09/09/2022
+Cookie,Sugar Cookie,12.36,13/06/2030
+Coffee,Caffe Breve,10.99,24/07/2031
+Soda,Diet Coke Vanilla,17.28,17/07/2023
+Sandwich,Turkey Sandwich,2.62,28/05/2031
+Cookie,Peanut Butter Blossom,7.95,21/04/2028
+Pastry,Pain au Lard,14.81,26/02/2028
+Salad,Ambrosia Salad,8.78,13/11/2019
+Pastry,Danish,19.33,14/10/2030
+Sandwich,Monte Cristo Sandwich,5.62,04/05/2021
+Soda,Diet Cherry Canada Dry Ginger Ale,18.13,18/09/2024
+Tea,Teh Poci,18.21,19/03/2025
+Pastry,Pain au Chocolat,9.61,13/07/2025
+Tea,Teh Hitam,16.31,08/02/2030
+Tea,Teh Ais,5.57,25/07/2027
+Sandwich,Peanut Butter Sandwich,14.34,21/11/2021
+Sandwich,Reuben Sandwich,1.36,24/04/2021
+Hot Drink,Chocolate Chai,7.45,25/12/2032
+Soup,Beef Soup,14.02,23/09/2025
+Cake,Ice Cream Cake,11.31,13/10/2032
+Tea,Teh Buah,2.1,07/08/2021
+Pastry,Pain au Chocolat,19.49,06/01/2027
+Soup,French Onion Soup,17.25,25/10/2018
+Coffee,Cafe Con Leche,12.17,01/10/2028
+Salad,Garden Salad,2.23,08/08/2026
+Soda,Pepsi,18.98,17/12/2027
+Pastry,Pain au Lard,6.67,07/06/2025
+Hot Drink,Hot Cocoa,5.32,20/09/2022
+Cookie,Chocolate Chip Cookie,17.91,03/01/2018
+Pastry,Pain aux Chocolat,15.2,21/09/2022
+Pastry,Pain au Sucre,8.76,10/07/2025
+Cookie,Thumbprint Cookie,6.29,23/04/2030
+Coffee,Macchiato,5.58,04/09/2030
+Sandwich,Sloppy Joe Sandwich,4.47,26/10/2021
+Cookie,Biscotti,10.83,11/07/2020
+Tea,Fruit Tea,13.17,22/06/2029
+Hot Drink,Chocolate Coffee,5.46,28/06/2031
+Sandwich,Pulled Pork Sandwich,14.03,02/03/2022
+Salad,Seven-layer Salad,10.03,01/11/2020
+Cookie,Oatmeal Cookie,2.88,15/02/2028
+Sandwich,Egg Sandwich,17.64,17/10/2018
+Soda,Diet Cherry Pepsi,10.53,02/02/2026
+Cake,Angel Food Cake,0.67,02/05/2021
+Pastry,Pain au Lard,0.94,14/03/2021
+Tea,Teh Poci,4.03,15/03/2023
+Salad,Coleslaw,8.22,14/05/2032
+Pastry,Pain aux Raisins,15.66,14/02/2031
+Soda,Diet Cherry Fanta,16.62,20/01/2029
+Coffee,Latte,7.37,15/01/2018
+Tea,Honeybush Tea,9.4,03/08/2019
+Cake,Cheesecake,16.7,02/10/2020
+Soda,Cherry Cactus Cooler,16.4,24/07/2024
+Tea,Teh Hong Kong,14.41,05/03/2021
+Pastry,Cinnamon Roll,8.12,17/04/2020
+Coffee,Cafe Breva,3.45,24/02/2022
+Pastry,Pain au Beurre,1.51,28/06/2022
+Sandwich,Reuben Sandwich,9.58,23/11/2029
+Tea,Oolong Tea,2.88,09/04/2032
+Tea,Teh Sereh,11.8,23/03/2031
+Pastry,Cinnamon Roll,11.49,27/02/2028
+Cake,Wedding Cake,19.09,23/10/2020
+Salad,Salmagundi,3.5,10/09/2020
+Salad,Watergate Salad,5.94,01/11/2030
+Tea,Teh Rooibos,9.48,21/10/2031
+Sandwich,Pulled Pork Sandwich,13.74,10/01/2025
+Soda,Diet Coke Vanilla,8.15,11/08/2027
+Cake,Wedding Cake,3.36,16/01/2027
+Soda,Diet Cherry 7 Up,16.17,02/06/2029
+Pastry,Pain au Raisin,1.15,14/07/2024
+Cookie,Fortune Cookie,10.53,21/11/2032
+Tea,Teh Sereh,1.25,10/01/2026
+Pastry,Pain aux Chocolat,12.64,11/03/2021
+Coffee,Caffe Mocha,19.05,16/11/2032
+Coffee,Cafe Del Tiempo,4.34,19/10/2030
+Hot Drink,Hot Chocolate,13.37,16/12/2026
+Hot Drink,Hot Cocoa,10.12,13/02/2021
+Soda,Cherry Dr Pepper,8.24,11/04/2030
+Sandwich,Bacon Sandwich,9.79,24/03/2026
+Coffee,Caffe Macchiato,5.91,07/06/2032
+Salad,Taco Salad,19.59,11/01/2021
+Cookie,Biscotti,17.46,26/05/2032
+Hot Drink,Hot Chocolate,1.4,27/07/2019
+Hot Drink,Chocolate Chai,9.02,25/01/2031
+Tea,Teh Tarik,1.38,22/06/2029
+Pastry,Pain aux Raisins,0.69,07/09/2023
+Soup,Carrot Soup,18.56,18/05/2030
+Soup,Pozole,19.69,19/01/2024
+Sandwich,Ham Sandwich,3.08,22/02/2030
+Tea,Rooibos Tea,18.03,16/07/2020
+Pastry,Bear Claw,16.55,15/06/2018
+Tea,Teh Tarik,3.9,18/02/2026
+Soup,Pumpkin Soup,16.55,19/02/2028
+Cookie,Biscotti,6.08,07/05/2023
+Soup,Hot and Sour Soup,15.23,19/08/2020
+Sandwich,Monte Cristo Sandwich,12.57,07/07/2020
+Salad,Olivier Salad,6.92,01/11/2019
+Sandwich,Roast Beef Sandwich,9.07,09/11/2031
+Cake,Birthday Cake,19.2,08/10/2018
+Soup,Chicken Soup,16.71,08/06/2032
+Hot Drink,Hot Cocoa,12.57,15/05/2025
+Soup,Tomato Soup,9.34,22/09/2026
+Coffee,Cafe Breva,14.42,16/12/2018
+Tea,Teh Halia,13.65,20/06/2026
+Cookie,Thumbprint Cookie,13.54,26/01/2024
+Soda,Diet Coke Vanilla,12.1,15/12/2020
+Salad,Poke Salad,10.69,14/04/2027
+Cookie,Molasses Cookie,13.08,16/03/2031
+Cookie,Thumbprint Cookie,11.15,18/08/2024
+Soda,Diet Coke Orange,11.15,04/09/2025
+Tea,Sweet Tea,4.51,06/05/2019
+Cake,Chocolate Cake,11.69,05/08/2023
+Pastry,Cinnamon Roll,4.84,11/02/2027
+Soda,Diet Cherry A&W Root Beer,19.04,05/11/2024
+Tea,Teh Manis,13.79,08/02/2024
+Cake,Carrot Cake,3.88,04/03/2030
+Soup,Mushroom Soup,4.26,24/03/2023
+Coffee,Mocha,3.34,02/06/2028
+Soda,Pepsi,7.44,25/09/2030
+Coffee,Cortado,18.94,16/02/2024
+Hot Drink,Chocolate Milk,12.93,25/04/2021
+Sandwich,Bacon Sandwich,5.64,23/05/2028
+Tea,Teh Sosro,19.0,09/05/2029
+Soda,Diet Coke Orange,18.36,02/02/2021
+Pastry,Pain au Lard,18.81,23/06/2023
+Cookie,Macaroon,13.04,20/02/2023
+Pastry,Cinnamon Roll,16.03,15/07/2028
+Soup,Gazpacho,0.92,09/03/2032
+Pastry,Pain au Fromage,7.87,25/04/2023
+Cake,Wedding Cake,7.47,11/09/2032
+Soda,Diet Coke Vanilla,4.19,25/04/2020
+Coffee,Caffe Macchiato,10.95,17/09/2023
+Soup,Lobster Bisque,2.35,05/08/2030
+Cake,Black Forest Cake,7.27,01/08/2032
+Soda,Diet Coke Lemon,10.02,27/03/2019
+Soda,Diet Coke Raspberry,12.83,17/01/2020
+Coffee,Cafe Breva,19.18,05/10/2021
+Hot Drink,Chocolate Chai,4.82,27/10/2018
+Coffee,Caffe Mocha,12.08,27/08/2018
+Cookie,Biscotti,2.78,19/11/2029
+Coffee,Cappuccino,11.03,01/11/2021
+Cookie,Fortune Cookie,15.9,26/11/2032
+Cake,German Chocolate Cake,14.62,04/03/2024
+Hot Drink,Hot Cocoa,4.78,12/10/2022
+Coffee,Cafe Melange,3.57,23/12/2024
+Soup,Chicken and Rice Soup,13.86,06/11/2029
+Sandwich,Peanut Butter Sandwich,6.81,16/01/2023
+Tea,Teh C Peng,16.71,14/02/2023
+Soup,Corn Chowder,3.23,04/12/2024
+Hot Drink,Hot Chocolate,6.65,26/04/2031
+Soda,Diet Cherry Dr Pepper,8.62,24/11/2022
+Soda,Cherry Dr Pepper,7.94,22/09/2019
+Sandwich,Turkey Sandwich,2.78,28/10/2031
+Tea,Teh Matcha,7.42,22/09/2028
+Cake,Fruit Cake,12.61,18/10/2027
+Soda,Diet Cherry Mountain Dew,17.96,22/03/2024
+Pastry,Pain,3.48,11/01/2029
+Soup,Pho,5.12,13/02/2031
+Cookie,Biscotti,1.26,21/10/2032
+Cake,German Chocolate Cake,12.69,05/03/2032
+Soup,Cream of Mushroom Soup,10.89,24/12/2019
+Hot Drink,Chocolate Chai,12.85,04/05/2029
+Salad,Broccoli Salad,1.5,21/11/2020
+Coffee,Cafe Del Tiempo,2.39,10/04/2031
+Coffee,Cafe Con Miel,8.93,03/10/2024
+Sandwich,BLT Sandwich,12.86,24/09/2031
+Coffee,Cafe Con Miel,1.31,01/11/2026
+Soda,Diet Coke,12.59,16/09/2024
+Soup,Lobster Bisque,18.22,26/03/2020
+Pastry,Pain au Sucre,18.83,09/02/2032
+Pastry,Pain au Beurre,8.39,14/08/2025
+Pastry,Pain,12.94,13/08/2023
+Sandwich,Club Sandwich,1.37,21/12/2025
+Tea,Teh Halia,12.96,07/08/2032
+Soda,Diet Coke Lemon,9.51,15/05/2021
+Pastry,Cinnamon Roll,7.6,12/12/2021
+Cookie,Fortune Cookie,8.46,10/07/2019
+Tea,Green Tea,18.7,02/12/2023
+Hot Drink,Chocolate Milk,16.99,23/09/2023
+Sandwich,Roast Beef Sandwich,0.64,06/01/2024
+Soup,Zuppa Toscana,5.49,09/02/2029
+Soup,Broccoli Soup,15.44,03/01/2030
+Cookie,Biscotti,12.2,02/03/2021
+Soup,Potato Soup,11.77,11/12/2026
+Soda,Fanta,1.07,27/07/2026
+Soup,Gumbo,13.69,27/12/2019
+Soda,Diet Coke Lime,11.1,20/04/2020
+Sandwich,Reuben Sandwich,5.24,06/08/2021
+Salad,Panzanella,5.75,25/12/2024
+Cake,Pound Cake,4.01,21/02/2029
+Hot Drink,Chocolate Chai,1.49,15/02/2025
+Tea,Hong Kong Milk Tea,2.85,08/12/2030
+Salad,Tuna Salad,9.18,12/03/2032
+Soup,Chicken and Rice Soup,2.17,21/03/2021
+Cookie,Thumbprint Cookie,1.88,20/06/2018
+Soda,Diet Coke Cherry,4.41,22/05/2027
+Salad,Coleslaw,10.33,11/08/2031
+Soup,Minestrone Soup,6.3,03/03/2027
+Soda,A&W Root Beer,16.99,19/10/2018
+Cookie,Peanut Butter Blossom,13.19,16/11/2025
+Soda,Diet Coke Lemon,5.83,26/10/2019
+Cake,Cupcake,12.27,15/08/2025
+Coffee,Cafe Zorro,10.69,22/10/2023
+Soda,Diet Coke Raspberry,18.28,02/06/2026
+Soup,Chicken Soup,3.51,17/02/2025
+Sandwich,Bologna Sandwich,15.45,21/05/2025
+Sandwich,Grilled Cheese Sandwich,2.52,28/11/2030
+Sandwich,Peanut Butter Sandwich,7.83,10/03/2023
+Pastry,Bear Claw,9.47,04/11/2021
+Coffee,Caffe Tobio,7.04,21/10/2020
+Sandwich,Bologna Sandwich,16.08,25/08/2021
+Coffee,Caffe Breve,18.84,04/11/2030
+Salad,Russian Salad,13.15,06/03/2028
+Cookie,Biscotti,9.75,16/06/2032
+Sandwich,Bacon Sandwich,2.33,20/12/2029
+Pastry,Pain au Chocolat,19.89,05/08/2032
+Pastry,Pain au Beurre,16.95,17/05/2030
+Soda,Diet Cherry A&W Root Beer,12.51,19/01/2025
+Hot Drink,Chocolate Coffee,10.92,16/06/2029
+Sandwich,Pulled Pork Sandwich,4.97,05/10/2030
+Soda,Diet Coke,3.52,05/01/2026
+Salad,Caesar Salad,2.09,09/04/2027
+Sandwich,Reuben Sandwich,1.35,25/01/2026
+Sandwich,Patty Melt Sandwich,13.76,28/04/2021
+Sandwich,Philly Cheesesteak Sandwich,7.94,14/04/2024

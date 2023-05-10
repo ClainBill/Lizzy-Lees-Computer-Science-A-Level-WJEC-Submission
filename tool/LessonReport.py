@@ -3,7 +3,7 @@ import random
 import string
 
 # Define the headers for the CSV file
-headers = ['LessonPlansID', 'StudentID', 'TeacherID', 'attended', 'student_behaviour', 'notes', 'Date']
+headers = ['LessonPlansID', 'StudentID', 'TeacherID', 'attended', 'student_behaviour', 'notes', 'date']
 
 # Define some helper functions for generating random data
 def generate_id(min, max):
