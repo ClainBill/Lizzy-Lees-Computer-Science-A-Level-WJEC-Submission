@@ -27,28 +27,44 @@ class FileHandler():
         self.key = "Your dad loves you! Get in the robot Shinji!"
         
         #Open file if exists, else create new shcema in memory (file will be created on save)
-        if os.path.isfile(file):
-            self.openFile()
-        else:
-            conn = sql.connect(":memory:")
-            self.createTables()
-            conn.commit()
+        self.fileExisted = self.openFile()
+
     
     def openFile(self):
         """Opens and decrypts the file. Creates a database in memory"""
         global conn
-        #Read and decrypt encrypted File to memory sql
-        f = open(self.file, "r", encoding="utf-8")
-        fContents = f.read()
+                
+        #Check if file exists
+        if not os.path.isfile(self.file):
+            # print("No File Found. Creating new file")
+            #Warn user that file does not exist, so new file will be created with default manager account
+            conn = sql.connect(":memory:")
+            self.createTables()
+            conn.commit()
+            
+            #Create default manager account with username and password admin
+            c = conn.cursor()
+            sqlStatement = "INSERT INTO EMPLOYEE (ID, username, password, job_description) VALUES (1, 'admin', 'admin', 'Manager');"
+            c.execute(sqlStatement)
+            conn.commit()
+            c.close()
+            
+            return False
+            
+        else:
+            #Read and decrypt encrypted File to memory sql
+            f = open(self.file, "r", encoding="utf-8")
+            fContents = f.read()
 
-        #Decrypt file into sql statement
-        decryptedFile = self.decrypt(fContents)
+            #Decrypt file into sql statement
+            decryptedFile = self.decrypt(fContents)
 
-        splash.destroy()
-        # Create a database in memory and import from decryptedFile
-        conn = sql.connect(":memory:")
-        conn.cursor().executescript(decryptedFile)
-        conn.commit()
+            # Create a database in memory and import from decryptedFile
+            conn = sql.connect(":memory:")
+            conn.cursor().executescript(decryptedFile)
+            conn.commit()
+            
+            return True
         
     def closeFile(self):
         """Saves database into encrypted file and creates a backup for the current day"""        
@@ -312,27 +328,15 @@ class App(Tk):
         geometry = "+" + str(x) + "+" + str(y)
         self.geometry(geometry).format(x,y)
 
-class Splash(App):
-    """Creates a splash screen"""
-    def __init__(self, width, height, *args, **kwargs):
-        super(App, self).__init__(*args, **kwargs)
-        self.overrideredirect(True) # Removes title bar
-        self.wm_attributes('-topmost', True)
-        
-        self.width = width
-        self.height = height
-        x = (self.winfo_screenwidth() - self.width)/2
-        y = (self.winfo_screenheight() - self.height)/2
-        self.geometry('%dx%d+%d+%d' % (self.width, self.height, x, y))
-
-        self.update()
-
 
 class Login(App):
     """Class for handling the login screen"""
     ###Class for handling the application###
-    def __init__(self, *args, **kwargs):
+    def __init__(self, fileExists = True, *args, **kwargs):
         super(Login, self).__init__(*args, **kwargs)
+        
+        if not fileExists:
+            messagebox.showinfo("Alert!", "No File Found. Creating new file\nDefault Manager Account: \nUsername: admin\nPassword: admin")
         
         # Create a label for the user name
         user_label = Label(self, text='Username:')
@@ -356,9 +360,9 @@ class Login(App):
         check_button = Button(self, text='Login', command=self.checkCredentials)
         check_button.pack()
         
-        # Create a button to skip login
-        check_button = Button(self, text='Just get me in there', command=self.skip)
-        check_button.pack()
+        # # Create a button to skip login
+        # check_button = Button(self, text='Just get me in there', command=self.skip)
+        # check_button.pack()
 
         # Run the window
         self.mainloop()
@@ -537,7 +541,7 @@ class PrimaryApp(App):
             teacherRecord = Record(teacherTab, table="TEACHER")
             teacherRecord.grid(row = 0, column = 0, sticky="nesw")
 
-        ### --- STUDENT TAB --- ###validate
+        ### --- STUDENT TAB --- ###
         #Only employees can't access the student tab
         if userRole != "employee":
             studentTab = PrimaryTab(self, recordTabs, "Student")
@@ -696,8 +700,8 @@ class PrimaryApp(App):
             if (table != "None"):
                 c = conn.cursor()
                 
-                sql = "SELECT MAX(id) FROM " + table
-                c.execute(sql)
+                sqlStatement = "SELECT MAX(id) FROM " + table
+                c.execute(sqlStatement)
                 last_id = c.fetchone()[0]
                 c.close() 
                 
@@ -722,26 +726,27 @@ class PrimaryApp(App):
                     idValue += 1
                     
                     # Insert only the values from the headers with data into the sql table
-                    sql = "INSERT INTO " + table +" (ID, "
+                    sqlCommand = "INSERT INTO " + table +" (ID, "
                     
                     for column in headers:
-                        sql += column + ", "
-                    sql = sql[:-2] + ")"
+                        sqlCommand += column + ", "
+                    sqlCommand = sqlCommand[:-2] + ")"
                     
-                    sql = sql + " VALUES (" + str(idValue) + ", \""
+                    sqlCommand = sqlCommand + " VALUES (" + str(idValue) + ", \""
                     
                     for value in row:
-                        sql += value + "\", \""
-                    sql = sql[:-3]
-                    sql += ");"
+                        sqlCommand += value + "\", \""
+                    sqlCommand = sqlCommand[:-3]
+                    sqlCommand += ");"
                     
-                    # print(sql)
+                    # print(sqlCommand)
                     c = conn.cursor()
-                    c.execute(sql)
+                    c.execute(sqlCommand)
                     conn.commit()
                     
                     c.close()
-            f.close()             
+            f.close()
+            self.importWin.destroy()
     
     def exportWin(self):
         """Initialises window for exporting a table's contents to a CSV file"""
@@ -1412,12 +1417,8 @@ class RecordEntry(Entry):
         
     def validate(self):
         """Validates the entry based on the column type"""
+        #Reset the valid flag
         self.valid = True
-        #No need to validate ID unless creating a new row
-        #Check what Validation is needed
-        # if "ID" in self.column:
-        #     # print("Validating " + self.get() + " as ID")
-        #     self.validateID()
         
         #Check if the entry is empty
         if (self.get() == "None") or self.get() == "":
@@ -1518,6 +1519,15 @@ class RecordEntry(Entry):
                     (date[2] == today[2] and date[1] == today[1] and date[0] > today[0])):
                 messagebox.showerror('Invalid Credentials!', str(self.get() + " is a date in the future"))
                 self.valid = False
+                
+    def validateDate(self):
+        """Validates the entry as any date"""
+        #Checks the entry contents with the regular expression:
+        #\d marks any digit [0-9]
+        if not re.match(r"^\d{2}/\d{2}/\d{4}$", self.get()):
+            messagebox.showerror('Invalid Credentials!', str(self.get() + "is not a valid date"))
+            self.valid = False
+                
     
     def validateEmail(self):
         """Validates the entry as an email address"""
@@ -1818,7 +1828,7 @@ class Record(Frame):
             self.addRecordButton = Button(self.query, text = "Add Record", command=partial(self.addRecord))
             self.addRecordButton.pack(side = "left", padx=(10,0), pady=(0,10))
             
-            self.deleteRecordButton = Button(self.query, text = "Delete Record", command=partial(self.deleteRecord))
+            self.deleteRecordButton = Button(self.query, text = "Delete Record", command=lambda: self.deleteRecord(''))
             self.deleteRecordButton.pack(side = "left", padx=(10,0), pady=(0,10))
             
         #Teachers can only search from STUDENT and LESSON_BOOKING tables, but can search and add to the LESSON_REPORT tables
@@ -1854,8 +1864,8 @@ class Record(Frame):
         
         #Execute sql statement to get data from the record at this ID
         c = conn.cursor()
-        sql = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
-        c.execute(sql)
+        sqlCommand = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
+        c.execute(sqlCommand)
         self.selection = c.fetchone()
         c.close()
         
@@ -1871,25 +1881,25 @@ class Record(Frame):
         if self.validate() and self.entries[0].validateID():
             c = conn.cursor()
 
-            sql = "INSERT INTO " + self.table.table +" ("
+            sqlCommand = "INSERT INTO " + self.table.table +" ("
 
             ### Select specific columns to add
             for i in range(len(self.entryVars)):
                 if self.entries[i].get() != "": #If entry field not empty
-                    sql += str(self.table.columns[i] + ", ")
+                    sqlCommand += str(self.table.columns[i] + ", ")
             
-            sql = sql[:-2]
-            sql += ") VALUES ("
+            sqlCommand = sqlCommand[:-2]
+            sqlCommand += ") VALUES ("
             
             for i in range(len(self.entryVars)):
                 value = self.entries[i].get()
                 
                 if value != "": #If entry field not empty
-                    sql += "'" + str(value + "', ")
+                    sqlCommand += "'" + str(value + "', ")
             
-            sql = sql[:-2]
-            sql += ");"
-            c.execute(sql)
+            sqlCommand = sqlCommand[:-2]
+            sqlCommand += ");"
+            c.execute(sqlCommand)
             c.close()
             self.table.fillTable()
         
@@ -1908,20 +1918,20 @@ class Record(Frame):
             if self.validate():
                 c = conn.cursor()
 
-                #sql statement definition
-                sql = "UPDATE " + self.table.table + " SET "
+                #sqlCommand statement definition
+                sqlCommand = "UPDATE " + self.table.table + " SET "
 
                 ### Select specific columns to add
                 for i in range(len(self.entryVars)):
                     value = self.entries[i].get()
                     if value != "":
-                        sql += str(self.table.columns[i] + " = '" + value + "', ")
+                        sqlCommand += str(self.table.columns[i] + " = '" + value + "', ")
 
                 
-                sql = sql[:-2] #remove comma and space at end of for loop
-                sql += " WHERE id = '" + self.entryVars[self.table.columns[0]].get() + "';"
-                print(sql)
-                c.execute(sql)
+                sqlCommand = sqlCommand[:-2] #remove comma and space at end of for loop
+                sqlCommand += " WHERE id = '" + self.entryVars[self.table.columns[0]].get() + "';"
+                print(sqlCommand)
+                c.execute(sqlCommand)
                 conn.commit()
                 c.close()
                 self.table.fillTable() #update table
@@ -1940,8 +1950,8 @@ class Record(Frame):
         """Delete a record from the table"""        
         if messagebox.askokcancel("ARE YOU SURE", "ARE YOU CERTAIN!!!???\n(this can not be undone)", icon='warning'):
             c = conn.cursor()
-            sql = "DELETE FROM " + self.table.table + " WHERE id = " + self.entries[0].get() + ";"
-            c.execute(sql)
+            sqlCommand = "DELETE FROM " + self.table.table + " WHERE id = " + self.entries[0].get() + ";"
+            c.execute(sqlCommand)
             c.close()
             self.table.fillTable()
             self.clearFields()
@@ -2188,8 +2198,8 @@ class Report(Record):
             
             #Execute sql statement to get data from the record at this ID
             c = conn.cursor()
-            sql = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
-            c.execute(sql)
+            sqlCommand = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
+            c.execute(sqlCommand)
             self.selection = c.fetchone()
             c.close()
             
@@ -2257,8 +2267,8 @@ class Plan(Record):
             
             #Execute sql statement to get data from the record at this ID
             c = conn.cursor()
-            sql = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
-            c.execute(sql)
+            sqlCommand = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
+            c.execute(sqlCommand)
             self.selection = c.fetchone()
             c.close()
             
@@ -2326,8 +2336,8 @@ class Sale(Record):
         
         #Execute sql statement to get data from the record at this ID
         c = conn.cursor()
-        sql = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
-        c.execute(sql)
+        sqlCommand = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
+        c.execute(sqlCommand)
         self.selection = c.fetchone()
         c.close()
         
@@ -2341,8 +2351,8 @@ class Sale(Record):
         for record in curItems:
             #Execute sql statement to get data from the record at this ID
             c = conn.cursor()
-            sql = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.table.tree.item(record)['values'][0])
-            c.execute(sql)
+            sqlCommand = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.table.tree.item(record)['values'][0])
+            c.execute(sqlCommand)
             actualCurItems.append(c.fetchone())
             c.close()
         
@@ -2413,8 +2423,8 @@ class Inventory(Record):
         
         #Execute sql statement to get data from the record at this ID
         c = conn.cursor()
-        sql = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
-        c.execute(sql)
+        sqlCommand = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.selection[0])
+        c.execute(sqlCommand)
         self.selection = c.fetchone()
         c.close()
         
@@ -2428,8 +2438,8 @@ class Inventory(Record):
         for record in curItems:
             #Execute sql statement to get data from the record at this ID
             c = conn.cursor()
-            sql = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.table.tree.item(record)['values'][0])
-            c.execute(sql)
+            sqlCommand = "SELECT * FROM " + self.table.table + " WHERE " + self.table.columns[0] + " = " + str(self.table.tree.item(record)['values'][0])
+            c.execute(sqlCommand)
             actualCurItems.append(c.fetchone())
             c.close()
         
@@ -2578,13 +2588,8 @@ def titleCase(inputString):
     return string
 
     
-
-
 if __name__ == "__main__":
     """Main function run when the program is started"""
 
-    splash = Splash(466, 372)
-
     handler = FileHandler("savedata.lzl")
-
-    Login()
+    Login(handler.fileExisted)

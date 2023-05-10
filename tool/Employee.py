@@ -19,7 +19,7 @@ def generate_username(forename, surname):
     return (forename[0] + surname).lower()
 
 def generate_password():
-    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10)) + "!"
+    return "Passw0rd!" + str(random.randint(1, 100))
 
 def generate_welsh_forename():
     return random.choice(welsh_forenames)
@@ -31,7 +31,7 @@ def generate_sex():
     return random.choice(['M', 'F'])
 
 def generate_title():
-    return random.choice(['Mr', 'Mrs', 'Miss', 'Ms', 'Dr'])
+    return random.choice(['Mr', 'Mrs', 'Ms', 'Dr'])
 
 def generate_birthdate():
     year = random.randint(1960, 2000)
