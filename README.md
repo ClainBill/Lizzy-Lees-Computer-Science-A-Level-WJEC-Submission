@@ -54,6 +54,15 @@ Otherwise you can use the [example database](EXAMPLE_DATABASE\savedata.lzl) prov
 
 The specific usage of the program is documented in the pdf under "Software Development".
 
+## Screenshots
+![Login screen](image-1.png)
+
+![Home Landing](image.png)
+
+![Date range filter and selected record](image-2.png)
+
+Again, there are more screenshots in the pdf.
+
 ## Authors
 
 * **William Gill** - *Everything* - [FREAKS](www.freaks.org.uk)
