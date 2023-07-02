@@ -50,7 +50,7 @@ py -3.4 main.py
 
 If you run the program clean, it will display a prompt informing you that the default username and password are "admin" and "admin" respectively.
 
-Otherwise you can use the [example database](EXAMPLE_DATABASE\savedata.lzl) provided in the repo, which has a username of "admin" and a password of "admin" for the admin user, but you can also log into any of the existing user records using the command line log to find their passwords.
+Otherwise you can use the [example database](EXAMPLE_DATABASE/savedata.lzl) provided in the repo, which has a username of "admin" and a password of "admin" for the admin user, but you can also log into any of the existing user records using the command line log to find their passwords.
 
 The specific usage of the program is documented in the pdf under "Software Development".
 
