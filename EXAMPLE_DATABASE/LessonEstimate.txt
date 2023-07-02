@@ -1,0 +1,25 @@
+================================
+06/05/2023: STUDENT_BOOKING Monthly Revenue Estimate:
+User ID '2' has Monthly monthly lessons, each costing £15 resulting in a monthly revenue of: £15.0
+User ID '3' has Weekly monthly lessons, each costing £20 resulting in a monthly revenue of: £80.0
+User ID '4' has Fortnightly monthly lessons, each costing £20 resulting in a monthly revenue of: £40.0
+User ID '5' has Fortnightly monthly lessons, each costing £10 resulting in a monthly revenue of: £20.0
+User ID '6' has Fortnightly monthly lessons, each costing £10 resulting in a monthly revenue of: £20.0
+
+Total Monthly Estimate for Selected Lessons: £175.0
+================================
+07/05/2023: STUDENT_BOOKING Monthly Revenue Estimate:
+User ID '4' has Fortnightly monthly lessons, each costing £20 resulting in a monthly revenue of: £40.0
+User ID '5' has Fortnightly monthly lessons, each costing £10 resulting in a monthly revenue of: £20.0
+User ID '6' has Fortnightly monthly lessons, each costing £10 resulting in a monthly revenue of: £20.0
+
+Total Monthly Estimate for Selected Lessons: £80.0
+================================
+10/05/2023: STUDENT_BOOKING Monthly Revenue Estimate:
+User ID '2' has Fortnightly monthly lessons, each costing £35 resulting in a monthly revenue of: £70.0
+User ID '3' has Fortnightly monthly lessons, each costing £40 resulting in a monthly revenue of: £80.0
+User ID '4' has Monthly monthly lessons, each costing £40 resulting in a monthly revenue of: £40.0
+User ID '5' has Weekly monthly lessons, each costing £30 resulting in a monthly revenue of: £120.0
+User ID '7' has Monthly monthly lessons, each costing £35 resulting in a monthly revenue of: £35.0
+
+Total Monthly Estimate for Selected Lessons: £345.0
