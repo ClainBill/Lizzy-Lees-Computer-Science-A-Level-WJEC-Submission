@@ -55,11 +55,11 @@ Otherwise you can use the [example database](EXAMPLE_DATABASE/savedata.lzl) prov
 The specific usage of the program is documented in the pdf under "Software Development".
 
 ## Screenshots
-![Login screen](image-1.png)
+![Login screen](screenshots/login.png)
 
-![Home Landing](image.png)
+![Home Landing](screenshots/default.png)
 
-![Date range filter and selected record](image-2.png)
+![Date range filter and selected record](screenshots/record_selection.png)
 
 Again, there are more screenshots in the pdf.
 
